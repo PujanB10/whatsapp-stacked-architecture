@@ -15,6 +15,7 @@ class StartupView extends StackedView<StartupViewModel> {
     Widget? child,
   ) {
     return const Scaffold(
+      backgroundColor: Color(0xFF128c7e),
       body: Center(
           child: SizedBox(
         width: 70,
