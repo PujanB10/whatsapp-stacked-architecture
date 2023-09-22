@@ -13,59 +13,30 @@ class HomeView extends StackedView<HomeViewModel> {
     HomeViewModel viewModel,
     Widget? child,
   ) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: const Text("Whatsapp"),
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25.0),
-          child: Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                verticalSpaceLarge,
-                Column(
-                  children: [
-                    const Text(
-                      'Hello, STACKED!',
-                      style: TextStyle(
-                        fontSize: 35,
-                        fontWeight: FontWeight.w900,
-                      ),
-                    ),
-                    verticalSpaceMedium,
-                    MaterialButton(
-                      onPressed: viewModel.incrementCounter,
-                      child: Text(
-                        viewModel.counterLabel,
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    MaterialButton(
-                      onPressed: viewModel.showDialog,
-                      child: const Text(
-                        'Show Dialog',
-                        style: TextStyle(),
-                      ),
-                    ),
-                    MaterialButton(
-                      onPressed: viewModel.showBottomSheet,
-                      child: const Text(
-                        'Show Bottom Sheet',
-                        style: TextStyle(),
-                      ),
-                    ),
-                  ],
-                )
-              ],
+    return DefaultTabController(
+      length: 4,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text("WhatsApp"),
+          actions: [
+            buildIconButton(const Icon(Icons.camera_alt_outlined)),
+            buildIconButton(const Icon(Icons.search)),
+            buildIconButton(const Icon(Icons.more_vert))
+          ],
+          bottom: const TabBar(tabs: [
+            Tab(
+              icon: Icon(Icons.groups),
             ),
-          ),
+            Tab(
+              text: "Chat",
+            ),
+            Tab(
+              text: "Status",
+            ),
+            Tab(
+              text: "Calls",
+            ),
+          ]),
         ),
       ),
     );
@@ -76,4 +47,11 @@ class HomeView extends StackedView<HomeViewModel> {
     BuildContext context,
   ) =>
       HomeViewModel();
+
+  IconButton buildIconButton(Icon iconName) {
+    return IconButton(
+      icon: iconName,
+      onPressed: () {},
+    );
+  }
 }
