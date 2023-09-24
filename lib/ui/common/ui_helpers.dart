@@ -7,6 +7,7 @@ const double _tinySize = 5.0;
 const double _smallSize = 10.0;
 const double _mediumSize = 25.0;
 const double _largeSize = 50.0;
+const double _largerLage = 80.0;
 const double _massiveSize = 120.0;
 
 const Widget horizontalSpaceTiny = SizedBox(width: _tinySize);
@@ -19,6 +20,7 @@ const Widget verticalSpaceTiny = SizedBox(height: _tinySize);
 const Widget verticalSpaceSmall = SizedBox(height: _smallSize);
 const Widget verticalSpaceMedium = SizedBox(height: _mediumSize);
 const Widget verticalSpaceLarge = SizedBox(height: _largeSize);
+const Widget verticalSpaceLargerLarge = SizedBox(height: _largerLage);
 const Widget verticalSpaceMassive = SizedBox(height: _massiveSize);
 
 Widget spacedDivider = const Column(
