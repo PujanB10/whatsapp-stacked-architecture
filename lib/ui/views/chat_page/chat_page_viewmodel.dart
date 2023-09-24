@@ -4,9 +4,10 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:whatsapp_stacked_architecture/app/app.locator.dart';
 import 'package:whatsapp_stacked_architecture/datamodels/chat_model.dart';
 
-class ChatPageViewModel extends BaseViewModel {
+class ChatPageViewModel extends FormViewModel {
   final _navigationService = locator<NavigationService>();
-  static final Map<String, dynamic> _dummyChat = {
+  final TextEditingController messageInputController = TextEditingController();
+  static final Map<String, dynamic> dummyChats = {
     "Pujan": [
       {"message": "Hey there! How's your day going?", "isUser": false},
     ],
@@ -39,27 +40,27 @@ class ChatPageViewModel extends BaseViewModel {
   Icon _defaultIcon = const Icon(Icons.mic);
 
   Icon get defaultIcon => _defaultIcon;
-  Map get dummyChat => _dummyChat;
+  Map get dummyChat => dummyChats;
 
   /// Checks the existence of the user in the Static Variable [_dummyChat].
   /// If not, creates one. If it already exists adds the sent message
   /// to the Static Variable [_dummyChat]
-  void addMessages(
-      String userNameFromView, String messageFromView, bool isUserFromView) {
+  void addMessages(String userNameFromView) {
     ChatModel chat = ChatModel(
         userName: userNameFromView,
-        messages: messageFromView,
-        isUser: isUserFromView);
-    if (dummyChat.containsKey(userNameFromView)) {
+        messages: messageInputController.text,
+        isUser: true);
+    if (dummyChats.containsKey(userNameFromView)) {
       // Map<String, dynamic> chatMap = chat.toMapExisting();
-      dummyChat[userNameFromView]!
-          .add({"message": messageFromView, "isUser": isUserFromView});
+      dummyChats[userNameFromView]!
+          .add({"message": messageInputController.text, "isUser": true});
     } else {
       {
         Map<String, dynamic> chatMap = chat.toMapNew();
-        dummyChat.addEntries(chatMap.entries);
+        dummyChats.addEntries(chatMap.entries);
       }
     }
+    messageInputController.clear();
     rebuildUi();
   }
 
