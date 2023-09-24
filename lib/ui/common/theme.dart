@@ -25,5 +25,3 @@ class WhatsappTheme {
 
   // static
 }
-
-//colorswatch
