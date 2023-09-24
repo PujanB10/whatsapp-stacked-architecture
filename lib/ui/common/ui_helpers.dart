@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+const double _smallTinySize = 2.0;
 const double _tinySize = 5.0;
 const double _smallSize = 10.0;
 const double _mediumSize = 25.0;
@@ -13,6 +14,7 @@ const Widget horizontalSpaceSmall = SizedBox(width: _smallSize);
 const Widget horizontalSpaceMedium = SizedBox(width: _mediumSize);
 const Widget horizontalSpaceLarge = SizedBox(width: _largeSize);
 
+const Widget verticalSpaceSmallTiny = SizedBox(height: _smallTinySize);
 const Widget verticalSpaceTiny = SizedBox(height: _tinySize);
 const Widget verticalSpaceSmall = SizedBox(height: _smallSize);
 const Widget verticalSpaceMedium = SizedBox(height: _mediumSize);
