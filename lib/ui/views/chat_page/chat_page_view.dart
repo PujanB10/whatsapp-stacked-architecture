@@ -30,7 +30,8 @@ class ChatPageView extends StackedView<ChatPageViewModel> {
         userName: username,
         viewModel: viewModel,
       ),
-      bottomNavigationBar: BottomNavBar(userName: username),
+      bottomNavigationBar:
+          BottomNavBar(userName: username, viewModel: viewModel),
     );
   }
 
