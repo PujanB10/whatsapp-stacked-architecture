@@ -4,19 +4,19 @@ import 'package:stacked/stacked_annotations.dart';
 import 'package:whatsapp_stacked_architecture/ui/common/ui_helpers.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/chat_page/chat_page_viewmodel.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/chat_page/widgets/bottom_nav_bar_floating_button.dart';
-import 'package:whatsapp_stacked_architecture/ui/views/chat_page/widgets/bottom_nav_bar_widget.form.dart';
 
 @FormView(fields: [FormTextField(name: 'messageInput')])
 
 /// A customizable bottom navigation bar for sending messages
-class BottomNavBar extends StatelessWidget with $BottomNavBar {
+class BottomNavBar extends StatelessWidget {
   /// Creates a [BottomNavBar] widget
   ///
   /// [userName] must not be null.
   ///
   /// [userName] is the username associated with this navigation bar.
-  BottomNavBar({super.key, required this.userName});
+  BottomNavBar({super.key, required this.userName, required this.viewModel});
   final String userName;
+  final ChatPageViewModel viewModel;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class BottomNavBar extends StatelessWidget with $BottomNavBar {
           horizontalSpaceSmall,
           Expanded(
             child: TextField(
-              controller: messageInputController,
+              controller: viewModel.messageInputController,
               onTap: () {
                 /// Updates the text message inserted in the message field
                 /// and triggers an icon change.
@@ -67,13 +67,5 @@ class BottomNavBar extends StatelessWidget with $BottomNavBar {
         ],
       ),
     );
-  }
-
-  void onViewModelReady(ChatPageViewModel viewModel) {
-    syncFormWithViewModel(viewModel);
-  }
-
-  void onDispose(ChatPageViewModel viewModel) {
-    disposeForm();
   }
 }
