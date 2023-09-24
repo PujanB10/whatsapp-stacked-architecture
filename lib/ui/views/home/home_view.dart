@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-import 'package:whatsapp_stacked_architecture/ui/common/ui_helpers.dart';
-
+import 'package:whatsapp_stacked_architecture/ui/views/home/widgets/home_view_app_bar_widget.dart';
+import 'package:whatsapp_stacked_architecture/ui/views/home/widgets/user_list_view_widget.dart';
 import 'home_viewmodel.dart';
 
 class HomeView extends StackedView<HomeViewModel> {
@@ -16,27 +16,13 @@ class HomeView extends StackedView<HomeViewModel> {
     return DefaultTabController(
       length: 4,
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text("WhatsApp"),
-          actions: [
-            buildIconButton(const Icon(Icons.camera_alt_outlined)),
-            buildIconButton(const Icon(Icons.search)),
-            buildIconButton(const Icon(Icons.more_vert))
-          ],
-          bottom: const TabBar(tabs: [
-            Tab(
-              icon: Icon(Icons.groups),
-            ),
-            Tab(
-              text: "Chat",
-            ),
-            Tab(
-              text: "Status",
-            ),
-            Tab(
-              text: "Calls",
-            ),
-          ]),
+        appBar: const HomeViewAppBarWidget(),
+        body: UsersListViewWidget(
+          homeViewModel: viewModel,
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          child: const Icon(Icons.message),
         ),
       ),
     );
