@@ -9,6 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  provider: ^6.0.5
   stacked: ^3.4.0
   stacked_services: ^1.1.0
 
@@ -24,4 +25,6 @@ flutter:
   uses-material-design: true
   assets:
     - lib/ui/assets/iconStartUp.png
+    - lib/ui/assets/icon1.jpeg
+    - lib/ui/assets/icon2.png
 
