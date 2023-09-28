@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "448854262898",
+    "project_id": "chat-project-pujan1",
+    "storage_bucket": "chat-project-pujan1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:448854262898:android:42f1a8984fc8549b13aeeb",
+        "android_client_info": {
+          "package_name": "com.example.whatsapp_stacked_architecture"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBt2L6QwDGHQLg7zLNF-CIhge6x9gLWBLM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
