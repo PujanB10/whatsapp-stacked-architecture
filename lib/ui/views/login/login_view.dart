@@ -33,7 +33,7 @@ class LoginView extends StackedView<LoginViewModel> {
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20)),
                       prefixIcon: Icon(Icons.person_outline),
-                      hintText: "Username"),
+                      hintText: "Email"),
                 ),
               ),
               verticalSpaceMedium,
