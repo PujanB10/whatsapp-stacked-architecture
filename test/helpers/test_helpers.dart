@@ -2,6 +2,9 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:whatsapp_stacked_architecture/app/app.locator.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:whatsapp_stacked_architecture/services/chat_service_service.dart';
+import 'package:whatsapp_stacked_architecture/services/create_new_user_service.dart';
+import 'package:whatsapp_stacked_architecture/services/login_service_service.dart';
 // @stacked-import
 
 import 'test_helpers.mocks.dart';
@@ -10,13 +13,19 @@ import 'test_helpers.mocks.dart';
   MockSpec<NavigationService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<BottomSheetService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<DialogService>(onMissingStub: OnMissingStub.returnDefault),
-  // @stacked-mock-spec
+  MockSpec<ChatServiceService>(onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<CreateNewUserService>(onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<LoginServiceService>(onMissingStub: OnMissingStub.returnDefault),
+// @stacked-mock-spec
 ])
 void registerServices() {
   getAndRegisterNavigationService();
   getAndRegisterBottomSheetService();
   getAndRegisterDialogService();
-  // @stacked-mock-register
+  getAndRegisterChatServiceService();
+  getAndRegisterCreateNewUserService();
+  getAndRegisterLoginServiceService();
+// @stacked-mock-register
 }
 
 MockNavigationService getAndRegisterNavigationService() {
@@ -69,6 +78,26 @@ MockDialogService getAndRegisterDialogService() {
   return service;
 }
 
+MockChatServiceService getAndRegisterChatServiceService() {
+  _removeRegistrationIfExists<ChatServiceService>();
+  final service = MockChatServiceService();
+  locator.registerSingleton<ChatServiceService>(service);
+  return service;
+}
+
+MockCreateNewUserService getAndRegisterCreateNewUserService() {
+  _removeRegistrationIfExists<CreateNewUserService>();
+  final service = MockCreateNewUserService();
+  locator.registerSingleton<CreateNewUserService>(service);
+  return service;
+}
+
+MockLoginServiceService getAndRegisterLoginServiceService() {
+  _removeRegistrationIfExists<LoginServiceService>();
+  final service = MockLoginServiceService();
+  locator.registerSingleton<LoginServiceService>(service);
+  return service;
+}
 // @stacked-mock-create
 
 void _removeRegistrationIfExists<T extends Object>() {

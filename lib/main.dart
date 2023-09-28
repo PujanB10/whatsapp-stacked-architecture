@@ -13,7 +13,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await setupLocator();
-  await FirebaseAuth.instance.useAuthEmulator('localhost', 4400);
+
   setupDialogUi();
   setupBottomSheetUi();
   runApp(const MainApp());
