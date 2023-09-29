@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
 import 'package:whatsapp_stacked_architecture/ui/common/ui_helpers.dart';
+import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/custom_text_button_widget.dart';
+import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/text_field_widget.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/register/register_viewmodel.dart';
-
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class RegisterView extends StackedView<RegisterViewModel> {
   const RegisterView({Key? key}) : super(key: key);
@@ -17,10 +17,10 @@ class RegisterView extends StackedView<RegisterViewModel> {
   ) {
     return Scaffold(
       body: SafeArea(
-        child: Center(
+        child: SingleChildScrollView(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              verticalSpaceMassive,
               Text(
                 "Sign Up",
                 style: GoogleFonts.acme(fontSize: 45),
@@ -29,87 +29,53 @@ class RegisterView extends StackedView<RegisterViewModel> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(
+                  TextFieldWidget(
+                    textEditingController: viewModel.firstNameController,
                     width: 150,
-                    child: TextField(
-                      controller: viewModel.firstNameController,
-                      decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20)),
-                          prefixIcon: Icon(Icons.abc),
-                          hintText: "First Name"),
-                    ),
+                    hintText: "First Name",
+                    prefixIcon: const Icon(Icons.abc_outlined),
                   ),
                   horizontalSpaceTiny,
-                  SizedBox(
+                  TextFieldWidget(
+                    textEditingController: viewModel.lastNameController,
                     width: 150,
-                    child: TextField(
-                      controller: viewModel.lastNameController,
-                      decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20)),
-                          prefixIcon: Icon(Icons.abc),
-                          hintText: "Last Name"),
-                    ),
-                  ),
+                    hintText: "Last Name",
+                    prefixIcon: const Icon(Icons.abc_outlined),
+                  )
                 ],
               ),
               verticalSpaceMedium,
-              SizedBox(
+              TextFieldWidget(
+                textEditingController: viewModel.emailController,
                 width: 300,
-                child: TextField(
-                  controller: viewModel.emailController,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                      prefixIcon: Icon(Icons.person_outline),
-                      hintText: "Email"),
-                ),
+                hintText: "Email",
+                prefixIcon: const Icon(Icons.person_2_outlined),
               ),
               verticalSpaceMedium,
-              SizedBox(
+              TextFieldWidget(
+                isObscure: true,
+                textEditingController: viewModel.passwordController,
                 width: 300,
-                child: TextField(
-                  obscureText: true,
-                  controller: viewModel.passwordController,
-                  decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.lock_outline),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                      hintText: "Password"),
-                ),
+                hintText: "Password",
+                prefixIcon: const Icon(Icons.lock_outline),
               ),
               verticalSpaceMedium,
-              SizedBox(
+              TextFieldWidget(
+                isObscure: true,
+                textEditingController: viewModel.confirmPasswordController,
                 width: 300,
-                child: TextField(
-                  obscureText: true,
-                  controller: viewModel.confirmPasswordController,
-                  decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.lock_outline),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                      hintText: "Confirm Password"),
-                ),
+                hintText: "Confirm Password",
+                prefixIcon: const Icon(Icons.abc_outlined),
               ),
               verticalSpaceMedium,
-              Padding(
-                padding: MediaQuery.of(context).viewPadding,
-                child: SizedBox(
-                    width: 200,
-                    height: 50,
-                    child: ElevatedButton(
-                        onPressed: () {}, child: Text("Sign Up"))),
-              ),
+              CustomTextButtonWidget(
+                  textInButton: "Sign Up",
+                  onPressed: () {
+                    viewModel.createNewUser();
+                  }),
               verticalSpaceMedium,
-
-              Text("Already a user?"),
-
-              TextButton(onPressed: () {}, child: Text("Sign In"))
-              // SizedBox(
-              //     height: 50,
-              //     width: 200,
-              //     child: ElevatedButton(onPressed: () {}, child: Text("Sign Up"))),
+              const Text("Already a user?"),
+              TextButton(onPressed: () {}, child: const Text("Sign In"))
             ],
           ),
         ),
