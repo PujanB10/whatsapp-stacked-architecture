@@ -33,11 +33,4 @@ class HomeView extends StackedView<HomeViewModel> {
     BuildContext context,
   ) =>
       HomeViewModel();
-
-  IconButton buildIconButton(Icon iconName) {
-    return IconButton(
-      icon: iconName,
-      onPressed: () {},
-    );
-  }
 }

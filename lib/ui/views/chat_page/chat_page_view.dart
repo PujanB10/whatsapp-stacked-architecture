@@ -28,7 +28,6 @@ class ChatPageView extends StackedView<ChatPageViewModel> {
       ),
       body: MesssageListViewWidget(
         userName: username,
-        viewModel: viewModel,
       ),
       bottomNavigationBar:
           BottomNavBar(userName: username, viewModel: viewModel),

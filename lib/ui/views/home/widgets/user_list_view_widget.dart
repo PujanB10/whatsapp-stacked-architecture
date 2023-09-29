@@ -5,7 +5,7 @@ import 'package:whatsapp_stacked_architecture/ui/views/home/home_viewmodel.dart'
 class UsersListViewWidget extends StatelessWidget {
   /// Creates a [UsersListViewWidget].
   ///
-  /// Takes no arguments.
+  /// Takes the instance of [HomeViewModel] as argument.
   ///
   /// Builds a [ListView] where each elements consists of the
   /// image of the user,username of the user, last sent message of

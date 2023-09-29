@@ -8,13 +8,11 @@ class MesssageListViewWidget extends StatelessWidget {
   /// Creates a [MesssageListViewWidget]
   ///
   /// [userName] must not be null.
-  const MesssageListViewWidget(
-      {super.key, required this.userName, required this.viewModel});
+  const MesssageListViewWidget({super.key, required this.userName});
 
   /// [userName] is the username with whom the user's messages is to
   /// be displayed.
   final String userName;
-  final ChatPageViewModel viewModel;
 
   @override
   Widget build(BuildContext context) {
