@@ -68,6 +68,8 @@ class HomeViewModel extends BaseViewModel {
 
   void callChatPage(String userName, String imageUrl) {
     _navigationService.navigateToChatPageView(
-        username: userName, imageUrl: imageUrl);
+        transition: TransitionsBuilders.slideLeft,
+        username: userName,
+        imageUrl: imageUrl);
   }
 }
