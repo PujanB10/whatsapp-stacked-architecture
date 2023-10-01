@@ -9,7 +9,7 @@ import 'dart:ui' as _i5;
 import 'package:flutter/material.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:stacked_services/stacked_services.dart' as _i2;
-import 'package:whatsapp_stacked_architecture/services/chat_service_service.dart'
+import 'package:whatsapp_stacked_architecture/services/chat_service.dart'
     as _i6;
 import 'package:whatsapp_stacked_architecture/services/create_new_user_service.dart'
     as _i7;

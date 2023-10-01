@@ -2,7 +2,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:whatsapp_stacked_architecture/app/app.locator.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'package:whatsapp_stacked_architecture/services/chat_service_service.dart';
+import 'package:whatsapp_stacked_architecture/services/chat_service.dart';
 import 'package:whatsapp_stacked_architecture/services/create_new_user_service.dart';
 import 'package:whatsapp_stacked_architecture/services/login_service_service.dart';
 // @stacked-import
