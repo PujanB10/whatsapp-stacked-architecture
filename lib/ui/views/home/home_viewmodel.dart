@@ -6,6 +6,7 @@ import 'package:stacked_services/stacked_services.dart';
 
 class HomeViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
+  final _dialogService = locator<DialogService>();
 
   final List<Users> _dummy = [
     Users(
@@ -71,5 +72,11 @@ class HomeViewModel extends BaseViewModel {
         transition: TransitionsBuilders.slideLeft,
         username: userName,
         imageUrl: imageUrl);
+  }
+
+  Future<bool> isExitDialog() async {
+    var res = await _dialogService.showConfirmationDialog(
+        title: "Do you want to exit?");
+    return (res!.confirmed);
   }
 }

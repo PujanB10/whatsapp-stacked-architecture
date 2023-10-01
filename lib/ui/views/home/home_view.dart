@@ -13,16 +13,21 @@ class HomeView extends StackedView<HomeViewModel> {
     HomeViewModel viewModel,
     Widget? child,
   ) {
-    return DefaultTabController(
-      length: 4,
-      child: Scaffold(
-        appBar: const HomeViewAppBarWidget(),
-        body: UsersListViewWidget(
-          homeViewModel: viewModel,
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          child: const Icon(Icons.message),
+    return WillPopScope(
+      onWillPop: () async {
+        return viewModel.isExitDialog();
+      },
+      child: DefaultTabController(
+        length: 4,
+        child: Scaffold(
+          appBar: const HomeViewAppBarWidget(),
+          body: UsersListViewWidget(
+            homeViewModel: viewModel,
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {},
+            child: const Icon(Icons.message),
+          ),
         ),
       ),
     );
