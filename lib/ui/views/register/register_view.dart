@@ -33,14 +33,14 @@ class RegisterView extends StackedView<RegisterViewModel> {
                     textEditingController: viewModel.firstNameController,
                     width: 150,
                     hintText: "First Name",
-                    prefixIcon: const Icon(Icons.abc_outlined),
+                    prefixIcon: const Icon(Icons.person_outline),
                   ),
                   horizontalSpaceTiny,
                   TextFieldWidget(
                     textEditingController: viewModel.lastNameController,
                     width: 150,
                     hintText: "Last Name",
-                    prefixIcon: const Icon(Icons.abc_outlined),
+                    prefixIcon: const Icon(Icons.person_outline),
                   )
                 ],
               ),
@@ -49,7 +49,7 @@ class RegisterView extends StackedView<RegisterViewModel> {
                 textEditingController: viewModel.emailController,
                 width: 300,
                 hintText: "Email",
-                prefixIcon: const Icon(Icons.person_2_outlined),
+                prefixIcon: const Icon(Icons.email_outlined),
               ),
               verticalSpaceMedium,
               TextFieldWidget(
@@ -65,7 +65,7 @@ class RegisterView extends StackedView<RegisterViewModel> {
                 textEditingController: viewModel.confirmPasswordController,
                 width: 300,
                 hintText: "Confirm Password",
-                prefixIcon: const Icon(Icons.abc_outlined),
+                prefixIcon: const Icon(Icons.lock_outline),
               ),
               verticalSpaceMedium,
               CustomTextButtonWidget(
@@ -75,7 +75,11 @@ class RegisterView extends StackedView<RegisterViewModel> {
                   }),
               verticalSpaceMedium,
               const Text("Already a user?"),
-              TextButton(onPressed: () {}, child: const Text("Sign In"))
+              TextButton(
+                  onPressed: () {
+                    viewModel.navigateToLoginView();
+                  },
+                  child: const Text("Sign In"))
             ],
           ),
         ),
