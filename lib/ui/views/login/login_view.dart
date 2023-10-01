@@ -19,7 +19,7 @@ class LoginView extends StackedView<LoginViewModel> {
   ) {
     return WillPopScope(
       onWillPop: () async {
-        return viewModel.showDialog();
+        return viewModel.isExitDialog();
       },
       child: Scaffold(
         body: SafeArea(

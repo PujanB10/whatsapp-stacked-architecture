@@ -31,13 +31,10 @@ class LoginViewModel extends BaseViewModel {
     _navigationService.navigateToRegisterView();
   }
 
-  Future<bool> showDialog() async {
+  Future<bool> isExitDialog() async {
     var res = await _dialogService.showConfirmationDialog(
         title: "Do you want to exit?");
-    if (res!.confirmed) {
-      return true;
-    }
-    return false;
+    return (res!.confirmed);
   }
 
   @override
