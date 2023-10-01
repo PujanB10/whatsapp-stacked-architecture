@@ -54,6 +54,7 @@ class DefaultFirebaseOptions {
     appId: '1:448854262898:android:42f1a8984fc8549b13aeeb',
     messagingSenderId: '448854262898',
     projectId: 'chat-project-pujan1',
+    databaseURL: 'https://chat-project-pujan1-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'chat-project-pujan1.appspot.com',
   );
 
@@ -62,6 +63,7 @@ class DefaultFirebaseOptions {
     appId: '1:448854262898:ios:ac247841a6afd89a13aeeb',
     messagingSenderId: '448854262898',
     projectId: 'chat-project-pujan1',
+    databaseURL: 'https://chat-project-pujan1-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'chat-project-pujan1.appspot.com',
     iosBundleId: 'com.example.whatsappStackedArchitecture',
   );
