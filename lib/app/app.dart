@@ -6,7 +6,6 @@ import 'package:whatsapp_stacked_architecture/ui/views/startup/startup_view.dart
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/chat_page/chat_page_view.dart';
-import 'package:whatsapp_stacked_architecture/services/chat_service.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/login/login_view.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/register/register_view.dart';
 import 'package:whatsapp_stacked_architecture/services/create_new_user_service.dart';
