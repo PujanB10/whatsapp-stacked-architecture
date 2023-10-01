@@ -10,6 +10,7 @@ import 'package:whatsapp_stacked_architecture/ui/views/login/login_view.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/register/register_view.dart';
 import 'package:whatsapp_stacked_architecture/services/create_new_user_service.dart';
 import 'package:whatsapp_stacked_architecture/services/login_service_service.dart';
+import 'package:whatsapp_stacked_architecture/ui/dialogs/should_exit/should_exit_dialog.dart';
 // @stacked-import
 
 @StackedApp(
@@ -19,8 +20,8 @@ import 'package:whatsapp_stacked_architecture/services/login_service_service.dar
     CustomRoute(
       page: ChatPageView,
     ),
-    MaterialRoute(page: LoginView),
-    MaterialRoute(page: RegisterView),
+    CustomRoute(page: LoginView),
+    CustomRoute(page: RegisterView),
 // @stacked-route
   ],
   dependencies: [
@@ -37,7 +38,8 @@ import 'package:whatsapp_stacked_architecture/services/login_service_service.dar
   ],
   dialogs: [
     StackedDialog(classType: InfoAlertDialog),
-    // @stacked-dialog
+    StackedDialog(classType: ShouldExitDialog),
+// @stacked-dialog
   ],
 )
 class App {}

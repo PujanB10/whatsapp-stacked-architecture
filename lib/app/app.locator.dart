@@ -11,7 +11,6 @@ import 'package:stacked_services/src/dialog/dialog_service.dart';
 import 'package:stacked_services/src/navigation/navigation_service.dart';
 import 'package:stacked_shared/stacked_shared.dart';
 
-import '../services/chat_service.dart';
 import '../services/create_new_user_service.dart';
 import '../services/login_service_service.dart';
 

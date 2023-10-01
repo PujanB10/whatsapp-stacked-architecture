@@ -9,12 +9,10 @@ import 'dart:ui' as _i5;
 import 'package:flutter/material.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:stacked_services/stacked_services.dart' as _i2;
-import 'package:whatsapp_stacked_architecture/services/chat_service.dart'
-    as _i6;
 import 'package:whatsapp_stacked_architecture/services/create_new_user_service.dart'
-    as _i7;
+    as _i6;
 import 'package:whatsapp_stacked_architecture/services/login_service_service.dart'
-    as _i8;
+    as _i7;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -634,20 +632,48 @@ class MockDialogService extends _i1.Mock implements _i2.DialogService {
       );
 }
 
-/// A class which mocks [ChatServiceService].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockChatServiceService extends _i1.Mock
-    implements _i6.ChatServiceService {}
-
 /// A class which mocks [CreateNewUserService].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockCreateNewUserService extends _i1.Mock
-    implements _i7.CreateNewUserService {}
+    implements _i6.CreateNewUserService {
+  @override
+  _i4.Future<String> createNewUser(
+    String? email,
+    String? password,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #createNewUser,
+          [
+            email,
+            password,
+          ],
+        ),
+        returnValue: _i4.Future<String>.value(''),
+        returnValueForMissingStub: _i4.Future<String>.value(''),
+      ) as _i4.Future<String>);
+}
 
 /// A class which mocks [LoginServiceService].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockLoginServiceService extends _i1.Mock
-    implements _i8.LoginServiceService {}
+    implements _i7.LoginServiceService {
+  @override
+  _i4.Future<String> logIn(
+    String? email,
+    String? password,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #logIn,
+          [
+            email,
+            password,
+          ],
+        ),
+        returnValue: _i4.Future<String>.value(''),
+        returnValueForMissingStub: _i4.Future<String>.value(''),
+      ) as _i4.Future<String>);
+}
