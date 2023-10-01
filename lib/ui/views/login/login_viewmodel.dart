@@ -8,6 +8,7 @@ import 'package:whatsapp_stacked_architecture/services/login_service_service.dar
 class LoginViewModel extends BaseViewModel {
   final _logInService = locator<LoginServiceService>();
   final _navigationService = locator<NavigationService>();
+  final _dialogService = locator<DialogService>();
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -22,8 +23,21 @@ class LoginViewModel extends BaseViewModel {
     if (res.isNotEmpty) {
       /// If the service returns not empty string then
       /// it Sign ups the user and navigates to Home View.
-      _navigationService.navigateToHomeView();
+      _navigationService.replaceWithHomeView();
     }
+  }
+
+  void navigateToRegisterView() {
+    _navigationService.navigateToRegisterView();
+  }
+
+  Future<bool> showDialog() async {
+    var res = await _dialogService.showConfirmationDialog(
+        title: "Do you want to exit?");
+    if (res!.confirmed) {
+      return true;
+    }
+    return false;
   }
 
   @override
