@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:whatsapp_stacked_architecture/app/app.locator.dart';
 import 'package:whatsapp_stacked_architecture/app/app.router.dart';
+import 'package:whatsapp_stacked_architecture/datamodels/user_model.dart';
 import 'package:whatsapp_stacked_architecture/services/create_new_user_service.dart';
 
 final _createNewUserService = locator<CreateNewUserService>();
@@ -22,7 +24,6 @@ class RegisterViewModel extends BaseViewModel {
   get emailController => _emailController;
   get passwordController => _passwordController;
   get confirmPasswordController => _confirmPasswordController;
-  final db = FirebaseFirestore.instance;
 
   /// Async function that calls [createNewUser] service from the
   /// service class
@@ -31,15 +32,13 @@ class RegisterViewModel extends BaseViewModel {
         emailController.text, passwordController.text);
 
     if (res.isNotEmpty) {
-      final user = <String, dynamic>{
-        "firstName": _firstNameController.text,
-        "lastName": _lastNameController.text,
-        "email": _emailController.text
-      };
+      final user = Users(
+              firstName: _firstNameController.text,
+              lastName: _lastNameController.text,
+              email: emailController.text)
+          .toJson();
+      _createNewUserService.addInDatabase(user);
 // Add a new document with a generated ID
-      db.collection("users").add(user).then((DocumentReference doc) =>
-          print('DocumentSnapshot added with ID: ${doc.id}'));
-
       /// If the service returns not empty string then
       /// it Sign ups the user and navigates to Home View.
       _navigationService.replaceWithHomeView();
