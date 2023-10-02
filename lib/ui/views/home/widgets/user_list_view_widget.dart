@@ -18,8 +18,8 @@ class UsersListViewWidget extends StatelessWidget {
     return TabBarView(
       children: [
         const Icon(Icons.groups_sharp),
-        FutureBuilder<List<Users>>(
-            future: homeViewModel.fetchUserList(),
+        StreamBuilder(
+            stream: homeViewModel.fetchUserList(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 List<Users> listOfUsers = snapshot.data!;
@@ -38,7 +38,7 @@ class UsersListViewWidget extends StatelessWidget {
                       )),
                 );
               } else {
-                return CircularProgressIndicator();
+                return const Center(child: CircularProgressIndicator());
               }
             }),
         const Icon(Icons.groups_sharp),
