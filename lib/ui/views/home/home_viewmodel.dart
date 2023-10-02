@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:whatsapp_stacked_architecture/app/app.locator.dart';
 import 'package:whatsapp_stacked_architecture/datamodels/user_model.dart';
 import 'package:whatsapp_stacked_architecture/app/app.router.dart';
@@ -25,7 +24,7 @@ class HomeViewModel extends BaseViewModel {
     return (res!.confirmed);
   }
 
-  Future<List<Users>> fetchUserList() {
+  Stream<List<Users>> fetchUserList() {
     return _fetchUserService.fetchUserList();
   }
 }
