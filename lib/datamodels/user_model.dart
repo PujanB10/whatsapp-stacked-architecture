@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Users {
   String firstName;
   String lastName;
@@ -5,7 +7,8 @@ class Users {
 
   Users({required this.firstName, required this.lastName, required this.email});
 
-  factory Users.fromJson(Map<String, dynamic> json) {
+  factory Users.fromJson(QueryDocumentSnapshot<Map<String, dynamic>> snapShot) {
+    final json = snapShot.data()!;
     return Users(
         firstName: json["firstName"],
         lastName: json["lastName"],
