@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:whatsapp_stacked_architecture/datamodels/user_model.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/home/home_viewmodel.dart';
 
 /// A message view widget that views list of users with their last messages.
@@ -17,47 +18,29 @@ class UsersListViewWidget extends StatelessWidget {
     return TabBarView(
       children: [
         const Icon(Icons.groups_sharp),
-        ListView.builder(
-          itemCount: homeViewModel.dummy.length,
-          itemBuilder: ((BuildContext context, int index) => Column(
-                children: [
-                  const Divider(
-                    height: 10,
-                    color: Colors.white,
-                  ),
-                  ListTile(
-                    leading: CircleAvatar(
-                      backgroundImage: AssetImage(
-                          homeViewModel.userInfo(index)["imageURL"]!),
-                    ),
-                    onTap: () {
-                      homeViewModel.callChatPage(
-                        homeViewModel.userInfo(index)["userName"]!,
-                        homeViewModel.userInfo(index)["imageURL"]!,
-                      );
-                    },
-                    title: Row(
-                      children: <Widget>[
-                        //create UIhelper and implement
-                        Text(
-                          homeViewModel.userInfo(index)["userName"]!,
-                          style: Theme.of(context).textTheme.titleMedium,
-                        )
-                      ],
-                    ),
-                    subtitle: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Text(
-                          homeViewModel.userInfo(index)["userMessages"]!,
+        FutureBuilder<List<Users>>(
+            future: homeViewModel.fetchUserList(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                List<Users> listOfUsers = snapshot.data!;
+                return ListView.builder(
+                  itemCount: listOfUsers.length,
+                  itemBuilder: ((context, index) => ListTile(
+                        title: Text(
+                            "${listOfUsers[index].firstName} ${listOfUsers[index].lastName}"),
+                        subtitle: Text(listOfUsers[index].email),
+                        visualDensity: const VisualDensity(vertical: 4),
+                        leading: const CircleAvatar(
+                          backgroundImage:
+                              AssetImage("lib/ui/assets/icon1.jpeg"),
                         ),
-                        Text(homeViewModel.userInfo(index)["time"]!)
-                      ],
-                    ),
-                  ),
-                ],
-              )),
-        ),
+                        onTap: () {},
+                      )),
+                );
+              } else {
+                return CircularProgressIndicator();
+              }
+            }),
         const Icon(Icons.groups_sharp),
         const Icon(Icons.groups_sharp)
       ],
