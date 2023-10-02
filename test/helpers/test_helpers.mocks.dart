@@ -11,6 +11,8 @@ import 'package:mockito/mockito.dart' as _i1;
 import 'package:stacked_services/stacked_services.dart' as _i2;
 import 'package:whatsapp_stacked_architecture/services/create_new_user_service.dart'
     as _i6;
+import 'package:whatsapp_stacked_architecture/services/fetch_user_list_service.dart'
+    as _i8;
 import 'package:whatsapp_stacked_architecture/services/login_service_service.dart'
     as _i7;
 
@@ -677,3 +679,9 @@ class MockLoginServiceService extends _i1.Mock
         returnValueForMissingStub: _i4.Future<String>.value(''),
       ) as _i4.Future<String>);
 }
+
+/// A class which mocks [FetchUserListService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockFetchUserListService extends _i1.Mock
+    implements _i8.FetchUserListService {}
