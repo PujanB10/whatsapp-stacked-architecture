@@ -4,18 +4,29 @@ class Users {
   String firstName;
   String lastName;
   String email;
+  String userId;
 
-  Users({required this.firstName, required this.lastName, required this.email});
+  Users(
+      {required this.firstName,
+      required this.lastName,
+      required this.email,
+      required this.userId});
 
   factory Users.fromJson(QueryDocumentSnapshot<Map<String, dynamic>> snapShot) {
-    final json = snapShot.data()!;
+    final json = snapShot.data();
     return Users(
         firstName: json["firstName"],
         lastName: json["lastName"],
-        email: json["email"]);
+        email: json["email"],
+        userId: json["userId"]);
   }
 
   Map<String, dynamic> toJson() {
-    return {"firstName": firstName, "lastName": lastName, "email": email};
+    return {
+      "firstName": firstName,
+      "lastName": lastName,
+      "email": email,
+      "userId": userId
+    };
   }
 }
