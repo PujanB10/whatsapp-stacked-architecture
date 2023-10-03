@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:whatsapp_stacked_architecture/datamodels/chat_model.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/chat_page/chat_page_viewmodel.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/chat_page/widgets/chat_box_widget.dart';
@@ -35,7 +34,7 @@ class MesssageListViewWidget extends StatelessWidget {
                           .isUser(listOfMessages[index].sentBy));
                 });
           } else {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
         });
     // return Container();

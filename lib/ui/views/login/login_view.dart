@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
 import 'package:whatsapp_stacked_architecture/ui/common/ui_helpers.dart';
-import 'package:whatsapp_stacked_architecture/ui/dialogs/should_exit/should_exit_dialog.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/custom_text_button_widget.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/text_field_widget.dart';
 import 'login_viewmodel.dart';
