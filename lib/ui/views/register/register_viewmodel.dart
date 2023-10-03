@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -31,11 +29,12 @@ class RegisterViewModel extends BaseViewModel {
     var res = await _createNewUserService.createNewUser(
         emailController.text, passwordController.text);
 
-    if (res.isNotEmpty) {
+    if (res != null) {
       final user = Users(
               firstName: _firstNameController.text,
               lastName: _lastNameController.text,
-              email: emailController.text)
+              email: emailController.text,
+              userId: res.user!.uid)
           .toJson();
       _createNewUserService.addInDatabase(user);
 // Add a new document with a generated ID
