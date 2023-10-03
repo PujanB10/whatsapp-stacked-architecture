@@ -6,16 +6,19 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:whatsapp_stacked_architecture/services/fetch_user_list_service.dart';
 
 class HomeViewModel extends BaseViewModel {
-  List<Users> dummy = [];
   final _navigationService = locator<NavigationService>();
   final _dialogService = locator<DialogService>();
   final _fetchUserService = locator<FetchUserListService>();
 
-  void callChatPage(String userName, String imageUrl) {
+  void callChatPage(
+      {required String userName,
+      required String imageUrl,
+      required String receiverUserID}) {
     _navigationService.navigateToChatPageView(
         transition: TransitionsBuilders.slideLeft,
         username: userName,
-        imageUrl: imageUrl);
+        imageUrl: imageUrl,
+        receiverUserId: receiverUserID);
   }
 
   Future<bool> isExitDialog() async {
