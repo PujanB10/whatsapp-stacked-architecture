@@ -20,6 +20,7 @@ class LoginViewModel extends BaseViewModel {
   void logIn() async {
     var res = await _logInService.logIn(
         emailController.text, passwordController.text);
+    debugPrint(res);
     if (res.isNotEmpty) {
       /// If the service returns not empty string then
       /// it Sign ups the user and navigates to Home View.
