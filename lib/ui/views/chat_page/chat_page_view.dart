@@ -7,11 +7,16 @@ import 'package:whatsapp_stacked_architecture/ui/views/chat_page/widgets/message
 import 'chat_page_viewmodel.dart';
 
 class ChatPageView extends StackedView<ChatPageViewModel> {
-  const ChatPageView({Key? key, required this.username, required this.imageUrl})
+  const ChatPageView(
+      {Key? key,
+      required this.username,
+      required this.imageUrl,
+      required this.receiverUserId})
       : super(key: key);
 
   final String username;
   final String imageUrl;
+  final String receiverUserId;
 
   @override
   Widget builder(
@@ -27,7 +32,8 @@ class ChatPageView extends StackedView<ChatPageViewModel> {
         viewModel: viewModel,
       ),
       body: MesssageListViewWidget(
-        userName: username,
+        chatPageViewModel: viewModel,
+        receiverUserId: receiverUserId,
       ),
       bottomNavigationBar:
           BottomNavBar(userName: username, viewModel: viewModel),
