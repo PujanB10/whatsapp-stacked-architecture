@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 /// A service class to create a new user in Firebase Authentication Service.
 class CreateNewUserService {
   final db = FirebaseFirestore.instance;
-  Future<String> createNewUser(String email, String password) async {
+  Future<UserCredential?> createNewUser(String email, String password) async {
     try {
       /// Stores the user credential in the credential variable
       /// that is received through an async function that calls
@@ -17,7 +17,7 @@ class CreateNewUserService {
 
       /// Returns the credential retreived from Firebase Auth service by converting
       /// it into string.
-      return credential.toString();
+      return credential;
     } on FirebaseAuthException catch (e) {
       /// Check for weak password
       if (e.code == 'weak-password') {
@@ -30,9 +30,9 @@ class CreateNewUserService {
     } catch (e) {
       print(e);
     }
+    return null;
 
     /// returns an empty string if the credential cannot be retrieved.
-    return "";
   }
 
   Future<void> addInDatabase(Map<String, dynamic> user) async {
