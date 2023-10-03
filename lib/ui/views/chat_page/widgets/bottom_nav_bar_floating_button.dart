@@ -18,7 +18,7 @@ class BottomNavBarFloatingButton extends StatelessWidget {
         onPressed: () {
           /// Send the message and clears the message text field
           /// on pressing the button.
-          context.read<ChatPageViewModel>().addMessages(userName);
+          context.read<ChatPageViewModel>().addMessages();
         },
         child: context.watch<ChatPageViewModel>().defaultIcon,
       ),
