@@ -1,67 +1,54 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:whatsapp_stacked_architecture/app/app.locator.dart';
 import 'package:whatsapp_stacked_architecture/datamodels/chat_model.dart';
+import 'package:whatsapp_stacked_architecture/services/chat_service.dart';
 
 class ChatPageViewModel extends FormViewModel {
+  final _chatService = locator<ChatService>();
   final _navigationService = locator<NavigationService>();
   final TextEditingController messageInputController = TextEditingController();
-  static final Map<String, dynamic> dummyChats = {
-    "Pujan": [
-      {"message": "Hey there! How's your day going?", "isUser": false},
-    ],
-    "Ram": [
-      {"message": "I just tried a new recipe.", "isUser": false},
-    ],
-    "Shyam": [
-      {"message": "Do you believe in aliens?", "isUser": false},
-    ],
-    "Gita": [
-      {"message": "I can't wait for the weekend to relax.", "isUser": false},
-    ],
-    "Sita": [
-      {"message": "Have you ever been on a trip?", "isUser": false},
-    ],
-    "Rakesh": [
-      {"message": "What's your favorite book of all time?", "isUser": false},
-    ],
-    "Abishek": [
-      {"message": "Just finished a great workout.", "isUser": false},
-    ],
-    "Rita": [
-      {"message": "Thinking about starting a new hobby.", "isUser": false},
-    ],
-    "Nita": [
-      {"message": "The weather today is so unpredictable.", "isUser": false},
-    ],
-  };
-
   Icon _defaultIcon = const Icon(Icons.mic);
-
   Icon get defaultIcon => _defaultIcon;
-  Map get dummyChat => dummyChats;
+  String _currentUserId = "";
+  String _chatId = "";
+  get chatId => _chatId;
+  get currentUserId => _currentUserId;
+
+  bool isUser(String checkUserId) {
+    return currentUserId == checkUserId;
+  }
+
+  void getCurrentUserId() {
+    _currentUserId = FirebaseAuth.instance.currentUser!.uid;
+  }
+
+  void getChatId(String currentUserId, String receiverUserId) {
+    _chatId = currentUserId.compareTo(receiverUserId) >= 0
+        ? "$currentUserId-$receiverUserId"
+        : "$receiverUserId-$currentUserId";
+  }
 
   /// Checks the existence of the user in the Static Variable [_dummyChat].
   /// If not, creates one. If it already exists adds the sent message
   /// to the Static Variable [_dummyChat]
-  void addMessages(String userNameFromView) {
-    ChatModel chat = ChatModel(
-        userName: userNameFromView,
-        messages: messageInputController.text,
-        isUser: true);
-    if (dummyChats.containsKey(userNameFromView)) {
-      // Map<String, dynamic> chatMap = chat.toMapExisting();
-      dummyChats[userNameFromView]!
-          .add({"message": messageInputController.text, "isUser": true});
-    } else {
-      {
-        Map<String, dynamic> chatMap = chat.toMapNew();
-        dummyChats.addEntries(chatMap.entries);
-      }
-    }
+  void addMessages() async {
+    Map<String, dynamic> messageInfo = ChatModel(
+            message: messageInputController.text,
+            sentBy: _currentUserId,
+            sentTime: Timestamp.now())
+        .toJson();
+    _chatService.addMessageInDatabase(messageInfo, chatId);
     messageInputController.clear();
-    rebuildUi();
+  }
+
+  Stream<List<ChatModel>> fetchChat(String receiverUserId) {
+    getCurrentUserId();
+    getChatId(currentUserId, receiverUserId);
+    return _chatService.fetchChatMessages(_chatId);
   }
 
   /// Sets mic icon as default and changes the icon to send on calling the function.
