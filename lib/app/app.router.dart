@@ -82,9 +82,11 @@ class StackedRouter extends _i1.RouterBase {
       return _i7.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             _i4.ChatPageView(
-                key: args.key,
-                username: args.username,
-                imageUrl: args.imageUrl),
+          key: args.key,
+          username: args.username,
+          imageUrl: args.imageUrl,
+          receiverUserId: args.receiverUserId,
+        ),
         settings: data,
         transitionsBuilder: data.transition ??
             (context, animation, secondaryAnimation, child) {
@@ -123,14 +125,14 @@ class StackedRouter extends _i1.RouterBase {
 }
 
 class ChatPageViewArguments {
-  const ChatPageViewArguments({
-    this.key,
-    required this.username,
-    required this.imageUrl,
-  });
+  const ChatPageViewArguments(
+      {this.key,
+      required this.username,
+      required this.imageUrl,
+      required this.receiverUserId});
 
   final _i7.Key? key;
-
+  final String receiverUserId;
   final String username;
 
   final String imageUrl;
@@ -187,6 +189,7 @@ extension NavigatorStateExtension on _i8.NavigationService {
     _i7.Key? key,
     required String username,
     required String imageUrl,
+    required String receiverUserId,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -195,7 +198,10 @@ extension NavigatorStateExtension on _i8.NavigationService {
   }) async {
     return navigateTo<dynamic>(Routes.chatPageView,
         arguments: ChatPageViewArguments(
-            key: key, username: username, imageUrl: imageUrl),
+            key: key,
+            username: username,
+            imageUrl: imageUrl,
+            receiverUserId: receiverUserId),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -262,6 +268,7 @@ extension NavigatorStateExtension on _i8.NavigationService {
     _i7.Key? key,
     required String username,
     required String imageUrl,
+    required String receiverUserId,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -270,7 +277,10 @@ extension NavigatorStateExtension on _i8.NavigationService {
   }) async {
     return replaceWith<dynamic>(Routes.chatPageView,
         arguments: ChatPageViewArguments(
-            key: key, username: username, imageUrl: imageUrl),
+            key: key,
+            username: username,
+            imageUrl: imageUrl,
+            receiverUserId: receiverUserId),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

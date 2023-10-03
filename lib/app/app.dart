@@ -1,4 +1,3 @@
-import 'package:stacked/stacked.dart';
 import 'package:whatsapp_stacked_architecture/ui/bottom_sheets/notice/notice_sheet.dart';
 import 'package:whatsapp_stacked_architecture/ui/dialogs/info_alert/info_alert_dialog.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/home/home_view.dart';
@@ -12,6 +11,7 @@ import 'package:whatsapp_stacked_architecture/services/create_new_user_service.d
 import 'package:whatsapp_stacked_architecture/services/login_service_service.dart';
 import 'package:whatsapp_stacked_architecture/ui/dialogs/should_exit/should_exit_dialog.dart';
 import 'package:whatsapp_stacked_architecture/services/fetch_user_list_service.dart';
+import 'package:whatsapp_stacked_architecture/services/chat_service.dart';
 // @stacked-import
 
 @StackedApp(
@@ -32,6 +32,7 @@ import 'package:whatsapp_stacked_architecture/services/fetch_user_list_service.d
     LazySingleton(classType: CreateNewUserService),
     LazySingleton(classType: LoginServiceService),
     LazySingleton(classType: FetchUserListService),
+    LazySingleton(classType: ChatService),
 // @stacked-service
   ],
   bottomsheets: [

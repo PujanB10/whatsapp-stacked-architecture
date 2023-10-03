@@ -5,6 +5,7 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:whatsapp_stacked_architecture/services/create_new_user_service.dart';
 import 'package:whatsapp_stacked_architecture/services/login_service_service.dart';
 import 'package:whatsapp_stacked_architecture/services/fetch_user_list_service.dart';
+import 'package:whatsapp_stacked_architecture/services/chat_service.dart';
 // @stacked-import
 
 import 'test_helpers.mocks.dart';
@@ -16,6 +17,7 @@ import 'test_helpers.mocks.dart';
   MockSpec<CreateNewUserService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<LoginServiceService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<FetchUserListService>(onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<ChatService>(onMissingStub: OnMissingStub.returnDefault),
 // @stacked-mock-spec
 ])
 void registerServices() {
@@ -25,6 +27,7 @@ void registerServices() {
   getAndRegisterCreateNewUserService();
   getAndRegisterLoginServiceService();
   getAndRegisterFetchUserListService();
+  getAndRegisterChatService();
 // @stacked-mock-register
 }
 
@@ -96,6 +99,13 @@ MockFetchUserListService getAndRegisterFetchUserListService() {
   _removeRegistrationIfExists<FetchUserListService>();
   final service = MockFetchUserListService();
   locator.registerSingleton<FetchUserListService>(service);
+  return service;
+}
+
+MockChatService getAndRegisterChatService() {
+  _removeRegistrationIfExists<ChatService>();
+  final service = MockChatService();
+  locator.registerSingleton<ChatService>(service);
   return service;
 }
 // @stacked-mock-create
