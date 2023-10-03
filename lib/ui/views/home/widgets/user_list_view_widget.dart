@@ -28,13 +28,18 @@ class UsersListViewWidget extends StatelessWidget {
                   itemBuilder: ((context, index) => ListTile(
                         title: Text(
                             "${listOfUsers[index].firstName} ${listOfUsers[index].lastName}"),
-                        subtitle: Text(listOfUsers[index].email),
+                        subtitle: Text("${listOfUsers[index].email}"),
                         visualDensity: const VisualDensity(vertical: 4),
                         leading: const CircleAvatar(
                           backgroundImage:
                               AssetImage("lib/ui/assets/icon1.jpeg"),
                         ),
-                        onTap: () {},
+                        onTap: () {
+                          homeViewModel.callChatPage(
+                              userName: listOfUsers[index].firstName,
+                              imageUrl: "lib/ui/assets/icon1.jpeg",
+                              receiverUserID: listOfUsers[index].userId);
+                        },
                       )),
                 );
               } else {
