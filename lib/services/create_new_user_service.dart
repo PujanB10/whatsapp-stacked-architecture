@@ -6,11 +6,18 @@ import 'package:flutter/material.dart';
 class CreateNewUserService {
   final db = FirebaseFirestore.instance;
 
-  Future<String> createNewUser(String email, String password) async {
+  /// Takes [email] and [password] as parameters.
+  ///
+  /// [email] is the Email and [password] is the Password of the user.
+  ///
+  /// A future method that calls the service to create new user from
+  /// Firebase Auth with the given credentials.
+  Future<String> createNewUser(
+      {required String email, required String password}) async {
     try {
       /// Stores the user credential in the credential variable
       /// that is received through an async function that calls
-      /// firebase authentication serevice.
+      /// firebase authentication service.
       UserCredential userCredential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
@@ -20,11 +27,15 @@ class CreateNewUserService {
       /// Returns the credential retreived from Firebase Auth service by converting
       /// it into string.
       return "successful:${userCredential.user!.uid}";
+
+      // On errors catches the errors and returns the error code.
     } on FirebaseAuthException catch (e) {
       return e.code;
     }
   }
 
+  /// Method that takes in the user description in Map type and
+  /// adds the object into the Firestore Database.
   Future<void> addInDatabase(Map<String, dynamic> user) async {
     db.collection("users").add(user).then((DocumentReference doc) =>
         debugPrint('DocumentSnapshot added with ID: ${doc.id}'));
