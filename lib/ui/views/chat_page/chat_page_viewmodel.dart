@@ -13,7 +13,7 @@ class ChatPageViewModel extends FormViewModel {
   final TextEditingController messageInputController = TextEditingController();
   Icon _defaultIcon = const Icon(Icons.mic);
   Icon get defaultIcon => _defaultIcon;
-  String _currentUserId = "";
+  final String _currentUserId = FirebaseAuth.instance.currentUser!.uid;
   String _chatId = "";
   get chatId => _chatId;
   get currentUserId => _currentUserId;
@@ -22,31 +22,24 @@ class ChatPageViewModel extends FormViewModel {
     return currentUserId == checkUserId;
   }
 
-  void getCurrentUserId() {
-    _currentUserId = FirebaseAuth.instance.currentUser!.uid;
-  }
-
   void getChatId(String currentUserId, String receiverUserId) {
     _chatId = currentUserId.compareTo(receiverUserId) >= 0
         ? "$currentUserId-$receiverUserId"
         : "$receiverUserId-$currentUserId";
   }
 
-  /// Checks the existence of the user in the Static Variable [_dummyChat].
-  /// If not, creates one. If it already exists adds the sent message
-  /// to the Static Variable [_dummyChat]
   void addMessages() async {
     Map<String, dynamic> messageInfo = ChatModel(
             message: messageInputController.text,
             sentBy: _currentUserId,
             sentTime: Timestamp.now())
         .toJson();
-    _chatService.addMessageInDatabase(messageInfo, chatId);
+    final DocumentReference documentReferenceId =
+        await _chatService.addMessageInDatabase(messageInfo, chatId);
     messageInputController.clear();
   }
 
   Stream<List<ChatModel>> fetchChat(String receiverUserId) {
-    getCurrentUserId();
     getChatId(currentUserId, receiverUserId);
     return _chatService.fetchChatMessages(_chatId);
   }
