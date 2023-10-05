@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
 import 'package:whatsapp_stacked_architecture/ui/common/ui_helpers.dart';
@@ -28,35 +29,41 @@ class LoginView extends StackedView<LoginViewModel> {
               children: [
                 Text(
                   "Log In",
-                  style: GoogleFonts.acme(fontSize: 45),
+                  style: GoogleFonts.acme(fontSize: 50.sp),
                 ),
-                verticalSpaceMedium,
+                verticalSpace(0.03.sh),
                 TextFieldWidget(
                   textEditingController: viewModel.emailController,
-                  width: 300,
+                  width: 0.78.sw,
                   hintText: "Email",
                   prefixIcon: const Icon(Icons.person_2_outlined),
                 ),
-                verticalSpaceMedium,
+                verticalSpace(0.03.sh),
                 TextFieldWidget(
                   isObscure: true,
                   textEditingController: viewModel.passwordController,
-                  width: 300,
+                  width: 0.78.sw,
                   hintText: "Password",
                   prefixIcon: const Icon(Icons.lock_outline),
                 ),
                 TextButton(
                     onPressed: () {}, child: const Text("Forgot password?")),
-                verticalSpaceSmall,
+                verticalSpace(0.01.sh),
                 CustomTextButtonWidget(
-                  onPressed: () {
-                    viewModel.logIn();
+                  onPressed: () async {
+                    await viewModel.logIn();
+                    if (context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          backgroundColor:
+                              viewModel.snackBarColorOnAuthentication,
+                          content: Text(viewModel.logInResponseMessage)));
+                    }
                   },
                   textInButton: "Log In",
                 ),
-                verticalSpaceMedium,
+                verticalSpace(0.03.sh),
                 const Text("Or Sign Up Using"),
-                verticalSpaceSmall,
+                verticalSpace(0.01.sh),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -71,13 +78,13 @@ class LoginView extends StackedView<LoginViewModel> {
                         icon: const Icon(FontAwesomeIcons.instagram))
                   ],
                 ),
-                verticalSpaceSmall,
+                verticalSpace(0.01.sh),
                 const Text("or"),
                 TextButton(
                     onPressed: () {
                       viewModel.navigateToRegisterView();
                     },
-                    child: const Text("Sign Up"))
+                    child: const Text("Sign Up")),
               ],
             ),
           ),
