@@ -10,7 +10,8 @@ class HomeViewModel extends BaseViewModel {
   final _dialogService = locator<DialogService>();
   final _fetchUserService = locator<FetchUserListService>();
 
-  void callChatPage(
+  /// Method to navigate to ChatPage.
+  void navigateToChatPage(
       {required String userName,
       required String imageUrl,
       required String receiverUserID}) {
@@ -21,12 +22,18 @@ class HomeViewModel extends BaseViewModel {
         receiverUserId: receiverUserID);
   }
 
+  /// Function that displays an exit dialog where if
+  /// pressed "Ok" returns true to the view and if pressed
+  ///  "Cancel" returns false to the view.
   Future<bool> isExitDialog() async {
+    // Display dialog from the dialog service.
     var res = await _dialogService.showConfirmationDialog(
         title: "Do you want to exit?");
     return (res!.confirmed);
   }
 
+  /// Method to call the service that fetches the list
+  /// of users from the database.
   Stream<List<Users>> fetchUserList() {
     return _fetchUserService.fetchUserList();
   }
