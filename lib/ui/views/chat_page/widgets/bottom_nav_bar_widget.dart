@@ -23,49 +23,48 @@ class BottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: MediaQuery.of(context).viewInsets,
-      child: Row(
-        children: [
-          horizontalSpaceSmall,
-          Expanded(
-            child: TextField(
-              controller: viewModel.messageInputController,
-              onTap: () {
-                /// Updates the text message inserted in the message field
-                /// and triggers an icon change.
-                context.read<ChatPageViewModel>().setIcon();
-              },
-              textAlignVertical: TextAlignVertical.bottom,
-              decoration: InputDecoration(
-                hintText: "Message",
-                fillColor: kDefaultIconLightColor,
-                filled: true,
-                border: OutlineInputBorder(
-                    borderSide: BorderSide.none,
-                    borderRadius: BorderRadius.circular(30)),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          children: [
+            Expanded(
+              child: TextField(
+                controller: viewModel.messageInputController,
+                onTap: () {
+                  /// Updates the text message inserted in the message field
+                  /// and triggers an icon change.
+                  context.read<ChatPageViewModel>().setIcon();
+                },
+                decoration: InputDecoration(
+                  hintText: "Message",
+                  fillColor: kDefaultIconLightColor,
+                  filled: true,
+                  border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.circular(30)),
 
-                /// Adds a prefix icon in front of the message text field.
-                prefixIcon: const Icon(Icons.emoji_emotions),
-                suffixIcon: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    IconButton(
-                        onPressed: () {}, icon: const Icon(Icons.attachment)),
-                    IconButton(
-                        onPressed: () {}, icon: const Icon(Icons.camera_alt)),
-                  ],
+                  /// Adds a prefix icon in front of the message text field.
+                  prefixIcon: const Icon(Icons.emoji_emotions),
+                  suffixIcon: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
+                          onPressed: () {}, icon: const Icon(Icons.attachment)),
+                      IconButton(
+                          onPressed: () {}, icon: const Icon(Icons.camera_alt)),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-          horizontalSpaceSmall,
+            horizontalSpaceSmall,
 
-          /// Send or Record button that resides in the bottom navigation
-          /// bar alongside message text field.
-          BottomNavBarFloatingButton(userName: userName),
-          horizontalSpaceSmall,
-          verticalSpaceLargerLarge,
-        ],
+            /// Send or Record button that resides in the bottom navigation
+            /// bar alongside message text field.
+            BottomNavBarFloatingButton(userName: userName),
+          ],
+        ),
       ),
     );
   }
