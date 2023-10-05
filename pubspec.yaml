@@ -7,17 +7,32 @@ environment:
   sdk: '>=3.0.3 <4.0.0'
 
 dependencies:
+  flutter:
+    sdk: flutter
+
+
+  # Firebase auth, crashlytics and Firestore database dependencies
   cloud_firestore: ^4.9.2
   firebase_auth: ^4.10.0
   firebase_core: ^2.16.0
   firebase_crashlytics: ^3.3.6
   firebase_messaging: ^14.6.8
-  flutter:
-    sdk: flutter
+  
+  # Utils and other third party packages
+  flutter_gen: ^5.3.2
+  flutter_screenutil: ^5.9.0
+
+
+  # Font dependencies of the app
   font_awesome_flutter: ^10.5.0
   google_fonts: ^6.1.0
+  
+  # Web dependencies of the app
   http: ^1.1.0
   provider: ^6.0.5
+
+
+  # Stacked architecture dependencies
   stacked: ^3.4.0
   stacked_services: ^1.1.0
 
@@ -29,10 +44,20 @@ dev_dependencies:
   mockito: ^5.4.1
   stacked_generator: ^1.3.3
 
+
+# The following section is specific to Flutter.
 flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
   uses-material-design: true
+
+  # Assets used in the app
   assets:
-    - lib/ui/assets/iconStartUp.png
-    - lib/ui/assets/icon1.jpeg
-    - lib/ui/assets/icon2.png
+    - assets/images/startup-image.png
+    - assets/images/icon1.jpeg
+    - assets/images/icon2.png
+
+
 
