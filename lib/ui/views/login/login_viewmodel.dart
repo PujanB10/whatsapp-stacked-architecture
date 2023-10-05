@@ -63,7 +63,7 @@ class LoginViewModel extends BaseViewModel {
   /// Returns ``` true ``` if confirmed to exit.
   ///
   /// Returns ``` false ``` if denied to exit.
-  Future<bool> isExitDialog() async {
+  Future<bool> isSupposedToExit() async {
     final res = await _dialogService.showConfirmationDialog(
         title: "Do you want to exit?");
     return (res!.confirmed);
