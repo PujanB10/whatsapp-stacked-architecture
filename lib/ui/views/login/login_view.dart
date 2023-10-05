@@ -4,7 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
 import 'package:whatsapp_stacked_architecture/ui/common/ui_helpers.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/custom_text_button_widget.dart';
-import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/text_field_widget.dart';
+import 'package:whatsapp_stacked_architecture/ui/views/login/widgets/login_email_text_field_widget.dart';
+import 'package:whatsapp_stacked_architecture/ui/views/login/widgets/login_password_text_field_widget.dart';
 import 'login_viewmodel.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -26,43 +27,46 @@ class LoginView extends StackedView<LoginViewModel> {
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+              children: <Widget>[
                 Text(
                   "Log In",
                   style: GoogleFonts.acme(fontSize: 50.sp),
                 ),
                 verticalSpace(0.03.sh),
-                TextFieldWidget(
-                  textEditingController: viewModel.emailController,
-                  width: 0.78.sw,
-                  hintText: "Email",
-                  prefixIcon: const Icon(Icons.person_2_outlined),
+                LoginEmailTextFieldWidget(
+                  viewModel: viewModel,
                 ),
                 verticalSpace(0.03.sh),
-                TextFieldWidget(
-                  isObscure: true,
-                  textEditingController: viewModel.passwordController,
-                  width: 0.78.sw,
-                  hintText: "Password",
-                  prefixIcon: const Icon(Icons.lock_outline),
+                LoginPasswordTextFieldWidget(
+                  viewModel: viewModel,
                 ),
                 TextButton(
-                    onPressed: () {}, child: const Text("Forgot password?")),
+                  onPressed: () {},
+                  child: const Text("Forgot password?"),
+                ),
                 verticalSpace(0.01.sh),
                 CustomTextButtonWidget(
                   onPressed: () async {
                     await viewModel.logIn();
                     if (context.mounted) {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
                           backgroundColor:
                               viewModel.snackBarColorOnAuthentication,
-                          content: Text(viewModel.logInResponseMessage)));
+                          content: Text(viewModel.logInResponseMessage),
+                        ),
+                      );
                     }
                   },
                   textInButton: "Log In",
                 ),
                 verticalSpace(0.03.sh),
-                const Text("Or Sign Up Using"),
+                const Text("or"),
+                TextButton(
+                    onPressed: () {
+                      viewModel.navigateToRegisterView();
+                    },
+                    child: const Text("Sign Up")),
                 verticalSpace(0.01.sh),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -79,12 +83,6 @@ class LoginView extends StackedView<LoginViewModel> {
                   ],
                 ),
                 verticalSpace(0.01.sh),
-                const Text("or"),
-                TextButton(
-                    onPressed: () {
-                      viewModel.navigateToRegisterView();
-                    },
-                    child: const Text("Sign Up")),
               ],
             ),
           ),
