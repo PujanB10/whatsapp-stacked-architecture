@@ -11,6 +11,8 @@ import 'package:firebase_auth/firebase_auth.dart' as _i8;
 import 'package:flutter/material.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:stacked_services/stacked_services.dart' as _i3;
+import 'package:whatsapp_stacked_architecture/datamodels/chat_model.dart'
+    as _i13;
 import 'package:whatsapp_stacked_architecture/datamodels/user_model.dart'
     as _i11;
 import 'package:whatsapp_stacked_architecture/services/chat_service.dart'
@@ -36,6 +38,17 @@ import 'package:whatsapp_stacked_architecture/services/login_service_service.dar
 class _FakeFirebaseFirestore_0 extends _i1.SmartFake
     implements _i2.FirebaseFirestore {
   _FakeFirebaseFirestore_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeDocumentReference_1<T extends Object?> extends _i1.SmartFake
+    implements _i2.DocumentReference<T> {
+  _FakeDocumentReference_1(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -764,4 +777,186 @@ class MockFetchUserListService extends _i1.Mock
 /// A class which mocks [ChatService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockChatService extends _i1.Mock implements _i12.ChatService {}
+class MockChatService extends _i1.Mock implements _i12.ChatService {
+  @override
+  _i2.FirebaseFirestore get db => (super.noSuchMethod(
+        Invocation.getter(#db),
+        returnValue: _FakeFirebaseFirestore_0(
+          this,
+          Invocation.getter(#db),
+        ),
+        returnValueForMissingStub: _FakeFirebaseFirestore_0(
+          this,
+          Invocation.getter(#db),
+        ),
+      ) as _i2.FirebaseFirestore);
+  @override
+  _i5.Stream<List<_i13.ChatModel>> fetchChatMessages(String? chatId) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #fetchChatMessages,
+          [chatId],
+        ),
+        returnValue: _i5.Stream<List<_i13.ChatModel>>.empty(),
+        returnValueForMissingStub: _i5.Stream<List<_i13.ChatModel>>.empty(),
+      ) as _i5.Stream<List<_i13.ChatModel>>);
+  @override
+  _i5.Future<_i2.DocumentReference<Object?>> addMessageInDatabase(
+    Map<String, dynamic>? messageInfo,
+    String? chatId,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #addMessageInDatabase,
+          [
+            messageInfo,
+            chatId,
+          ],
+        ),
+        returnValue: _i5.Future<_i2.DocumentReference<Object?>>.value(
+            _FakeDocumentReference_1<Object?>(
+          this,
+          Invocation.method(
+            #addMessageInDatabase,
+            [
+              messageInfo,
+              chatId,
+            ],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i5.Future<_i2.DocumentReference<Object?>>.value(
+                _FakeDocumentReference_1<Object?>(
+          this,
+          Invocation.method(
+            #addMessageInDatabase,
+            [
+              messageInfo,
+              chatId,
+            ],
+          ),
+        )),
+      ) as _i5.Future<_i2.DocumentReference<Object?>>);
+}
+
+/// A class which mocks [SnackbarService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockSnackbarService extends _i1.Mock implements _i3.SnackbarService {
+  @override
+  bool get isSnackbarOpen => (super.noSuchMethod(
+        Invocation.getter(#isSnackbarOpen),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
+  @override
+  void registerSnackbarConfig(_i3.SnackbarConfig? config) => super.noSuchMethod(
+        Invocation.method(
+          #registerSnackbarConfig,
+          [config],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  void registerCustomMainButtonBuilder({
+    dynamic variant,
+    _i4.Widget Function(
+      String?,
+      Function?,
+    )? builder,
+  }) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #registerCustomMainButtonBuilder,
+          [],
+          {
+            #variant: variant,
+            #builder: builder,
+          },
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  void registerCustomSnackbarConfig({
+    required dynamic variant,
+    _i3.SnackbarConfig? config,
+    _i3.SnackbarConfig Function()? configBuilder,
+  }) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #registerCustomSnackbarConfig,
+          [],
+          {
+            #variant: variant,
+            #config: config,
+            #configBuilder: configBuilder,
+          },
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  void showSnackbar({
+    String? title = r'',
+    required String? message,
+    dynamic Function(dynamic)? onTap,
+    Duration? duration,
+    String? mainButtonTitle,
+    void Function()? onMainButtonTapped,
+  }) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #showSnackbar,
+          [],
+          {
+            #title: title,
+            #message: message,
+            #onTap: onTap,
+            #duration: duration,
+            #mainButtonTitle: mainButtonTitle,
+            #onMainButtonTapped: onMainButtonTapped,
+          },
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  _i5.Future<dynamic>? showCustomSnackBar({
+    required String? message,
+    _i4.TextStyle? messageTextStyle,
+    required dynamic variant,
+    String? title,
+    _i4.TextStyle? titleTextStyle,
+    String? mainButtonTitle,
+    _i4.ButtonStyle? mainButtonStyle,
+    void Function()? onMainButtonTapped,
+    Function? onTap,
+    Duration? duration,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #showCustomSnackBar,
+          [],
+          {
+            #message: message,
+            #messageTextStyle: messageTextStyle,
+            #variant: variant,
+            #title: title,
+            #titleTextStyle: titleTextStyle,
+            #mainButtonTitle: mainButtonTitle,
+            #mainButtonStyle: mainButtonStyle,
+            #onMainButtonTapped: onMainButtonTapped,
+            #onTap: onTap,
+            #duration: duration,
+          },
+        ),
+        returnValueForMissingStub: null,
+      ) as _i5.Future<dynamic>?);
+  @override
+  _i5.Future<void> closeSnackbar() => (super.noSuchMethod(
+        Invocation.method(
+          #closeSnackbar,
+          [],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+}

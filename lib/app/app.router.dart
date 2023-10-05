@@ -82,11 +82,10 @@ class StackedRouter extends _i1.RouterBase {
       return _i7.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             _i4.ChatPageView(
-          key: args.key,
-          username: args.username,
-          imageUrl: args.imageUrl,
-          receiverUserId: args.receiverUserId,
-        ),
+                key: args.key,
+                username: args.username,
+                imageUrl: args.imageUrl,
+                receiverUserId: args.receiverUserId),
         settings: data,
         transitionsBuilder: data.transition ??
             (context, animation, secondaryAnimation, child) {
@@ -125,21 +124,24 @@ class StackedRouter extends _i1.RouterBase {
 }
 
 class ChatPageViewArguments {
-  const ChatPageViewArguments(
-      {this.key,
-      required this.username,
-      required this.imageUrl,
-      required this.receiverUserId});
+  const ChatPageViewArguments({
+    this.key,
+    required this.username,
+    required this.imageUrl,
+    required this.receiverUserId,
+  });
 
   final _i7.Key? key;
-  final String receiverUserId;
+
   final String username;
 
   final String imageUrl;
 
+  final String receiverUserId;
+
   @override
   String toString() {
-    return '{"key": "$key", "username": "$username", "imageUrl": "$imageUrl"}';
+    return '{"key": "$key", "username": "$username", "imageUrl": "$imageUrl", "receiverUserId": "$receiverUserId"}';
   }
 
   @override
@@ -147,12 +149,16 @@ class ChatPageViewArguments {
     if (identical(this, other)) return true;
     return other.key == key &&
         other.username == username &&
-        other.imageUrl == imageUrl;
+        other.imageUrl == imageUrl &&
+        other.receiverUserId == receiverUserId;
   }
 
   @override
   int get hashCode {
-    return key.hashCode ^ username.hashCode ^ imageUrl.hashCode;
+    return key.hashCode ^
+        username.hashCode ^
+        imageUrl.hashCode ^
+        receiverUserId.hashCode;
   }
 }
 
