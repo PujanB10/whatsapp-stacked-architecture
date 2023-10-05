@@ -1,6 +1,7 @@
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:whatsapp_stacked_architecture/app/app.bottomsheets.dart';
 import 'package:whatsapp_stacked_architecture/app/app.dialogs.dart';
 import 'package:whatsapp_stacked_architecture/app/app.locator.dart';
@@ -34,14 +35,16 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: WhatsappTheme.whatsappTheme,
-      initialRoute: Routes.startupView,
-      onGenerateRoute: StackedRouter().onGenerateRoute,
-      navigatorKey: StackedService.navigatorKey,
-      navigatorObservers: [
-        StackedService.routeObserver,
-      ],
+    return ScreenUtilInit(
+      child: MaterialApp(
+        theme: WhatsappTheme.whatsappTheme,
+        initialRoute: Routes.startupView,
+        onGenerateRoute: StackedRouter().onGenerateRoute,
+        navigatorKey: StackedService.navigatorKey,
+        navigatorObservers: [
+          StackedService.routeObserver,
+        ],
+      ),
     );
   }
 }
