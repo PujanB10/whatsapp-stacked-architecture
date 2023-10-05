@@ -20,6 +20,7 @@ class HomeView extends StackedView<HomeViewModel> {
         return viewModel.isExitDialog();
       },
       child: DefaultTabController(
+        initialIndex: 1,
         length: 4,
         child: Scaffold(
           appBar: const HomeViewAppBarWidget(),
