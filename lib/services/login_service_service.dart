@@ -3,30 +3,26 @@ import 'package:firebase_auth/firebase_auth.dart';
 /// A service class to log in into an existing user in Firebase
 /// Authentication Service.
 class LoginServiceService {
+  String responseCode = "";
+
+  /// Takes [email] and [password] as arguments.
+  ///
+  /// [email] and [password] are the email and password of the user
+  /// you're trying to log in as.
+  ///
+  /// Tries to authenticate and sign in with the given email
+  /// and password in the Firebase Authentication Service.
   Future<String> logIn(String email, String password) async {
     try {
-      /// Stores the user credential in the credential variable
-      /// that is received through an async function that calls
-      /// firebase authentication serevice.
-      final credential = await FirebaseAuth.instance
+      await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
+      responseCode = "Successful";
 
-      /// Returns the credential retreived from Firebase Auth service by converting
-      /// it into string.
-      return credential.toString();
+      /// On facing errors during the authentication catches the
+      /// error and returns the error code.
     } on FirebaseAuthException catch (e) {
-      /// Check for user existence in the database.
-      if (e.code == 'user-not-found') {
-        print('No user found for that email.');
-
-        /// Check for correctness in password.
-      } else if (e.code == 'wrong-password') {
-        print('Wrong password provided for that user.');
-      }
+      responseCode = e.code;
     }
-
-    /// returns an empty string if the credential cannot be retrieved.
-
-    return "";
+    return responseCode;
   }
 }
