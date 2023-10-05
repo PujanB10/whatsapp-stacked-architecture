@@ -6,50 +6,82 @@ import 'package:whatsapp_stacked_architecture/app/app.router.dart';
 import 'package:whatsapp_stacked_architecture/datamodels/user_model.dart';
 import 'package:whatsapp_stacked_architecture/services/create_new_user_service.dart';
 
-final _createNewUserService = locator<CreateNewUserService>();
-final _navigationService = locator<NavigationService>();
-
 class RegisterViewModel extends BaseViewModel {
+  final _createNewUserService = locator<CreateNewUserService>();
+  final _navigationService = locator<NavigationService>();
+
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _lastNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
+  String _signUpResponseMessage = "";
+  Color _responseSnackbarColor = Colors.red;
 
-  get firstNameController => _firstNameController;
-  get lastNameController => _lastNameController;
-  get emailController => _emailController;
-  get passwordController => _passwordController;
-  get confirmPasswordController => _confirmPasswordController;
+  // Get methods to access the private variables.
+  TextEditingController get firstNameController => _firstNameController;
+  TextEditingController get lastNameController => _lastNameController;
+  TextEditingController get emailController => _emailController;
+  TextEditingController get passwordController => _passwordController;
+  TextEditingController get confirmPasswordController =>
+      _confirmPasswordController;
+  String get signUpResponseMessage => _signUpResponseMessage;
+  Color get responseSnackbarColor => _responseSnackbarColor;
 
-  /// Async function that calls [createNewUser] service from the
-  /// service class
-  void createNewUser() async {
-    var res = await _createNewUserService.createNewUser(
+  /// Async function that calls service to create a new user.
+  Future<void> createNewUser() async {
+    // Recives the response given by the service class
+    final response = await _createNewUserService.createNewUser(
         emailController.text, passwordController.text);
 
-    if (res != null) {
+    // If the response received contains keyword successful adds the user
+    // to the database and navigates to Home Page.
+    if (response.contains("successful")) {
+      // Converting the given credentials into User model.
       final user = Users(
               firstName: _firstNameController.text,
               lastName: _lastNameController.text,
-              email: emailController.text,
-              userId: res.user!.uid)
+              email: _emailController.text,
+
+              // The response is in the format of "successful:userId" so retrieving
+              // the userId from the response.
+              userId: response.split(":")[1])
           .toJson();
-      _createNewUserService.addInDatabase(user);
-// Add a new document with a generated ID
-      /// If the service returns not empty string then
-      /// it Sign ups the user and navigates to Home View.
+
+      // Add the user to the database.
+      await _createNewUserService.addInDatabase(user);
+      _signUpResponseMessage = "New user with given user has been created";
+      _responseSnackbarColor = Colors.green;
       _navigationService.replaceWithHomeView();
+    }
+
+    // If response recives weak-password message show the given message in
+    // the snackbar.
+    if (response == 'weak-password') {
+      debugPrint('The password provided is too weak.');
+      _signUpResponseMessage = "The password provided is too weak.";
+
+      // If response recives email-already-in-use message show the given message in
+      // the snackbar.
+    } else if (response == 'email-already-in-use') {
+      debugPrint('The account already exists for that email.');
+      _signUpResponseMessage = "The account already exists for that email.";
+
+      // If faced any other errors shows the response message in the snackbar.
+    } else {
+      debugPrint(response);
+      _signUpResponseMessage = response;
     }
   }
 
   /// Function that checks if the confirm password field is same as
   /// the password field
-  void isConfirmPasswordSame() {
-    if (_passwordController.text != _confirmPasswordController) {}
-  }
+  // void isConfirmPasswordSame() {
+  //   if (_passwordController.text != _confirmPasswordController) {}
+  // }
 
+  /// Method that navigates to Login Page.
   void navigateToLoginView() {
     _navigationService.replaceWithLoginView();
   }
