@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_stacked_architecture/datamodels/user_model.dart';
+import 'package:whatsapp_stacked_architecture/gen/assets.gen.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/home/home_viewmodel.dart';
 
 /// A message view widget that views list of users with their last messages.
@@ -30,14 +31,13 @@ class UsersListViewWidget extends StatelessWidget {
                             "${listOfUsers[index].firstName} ${listOfUsers[index].lastName}"),
                         subtitle: Text(listOfUsers[index].email),
                         visualDensity: const VisualDensity(vertical: 4),
-                        leading: const CircleAvatar(
-                          backgroundImage:
-                              AssetImage("lib/ui/assets/icon1.jpeg"),
+                        leading: CircleAvatar(
+                          backgroundImage: Assets.images.icon1.provider(),
                         ),
                         onTap: () {
-                          homeViewModel.callChatPage(
+                          homeViewModel.navigateToChatPage(
                               userName: listOfUsers[index].firstName,
-                              imageUrl: "lib/ui/assets/icon1.jpeg",
+                              imageUrl: Assets.images.icon1.path,
                               receiverUserID: listOfUsers[index].userId);
                         },
                       )),
