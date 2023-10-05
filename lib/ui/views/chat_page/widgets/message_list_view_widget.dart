@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_stacked_architecture/datamodels/chat_model.dart';
+import 'package:whatsapp_stacked_architecture/ui/common/ui_helpers.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/chat_page/chat_page_viewmodel.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/chat_page/widgets/chat_box_widget.dart';
 
@@ -28,10 +29,15 @@ class MesssageListViewWidget extends StatelessWidget {
             return ListView.builder(
                 itemCount: listOfMessages.length,
                 itemBuilder: (context, index) {
-                  return ChatBox(
-                      message: listOfMessages[index].message,
-                      isUser: chatPageViewModel
-                          .isUser(listOfMessages[index].sentBy));
+                  return Column(
+                    children: [
+                      verticalSpaceSmall,
+                      ChatBox(
+                          message: listOfMessages[index].message,
+                          isUser: chatPageViewModel
+                              .isUser(listOfMessages[index].sentBy)),
+                    ],
+                  );
                 });
           } else {
             return const Center(child: CircularProgressIndicator());
