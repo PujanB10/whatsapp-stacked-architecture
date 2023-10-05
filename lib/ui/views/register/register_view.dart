@@ -4,8 +4,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
 import 'package:whatsapp_stacked_architecture/ui/common/ui_helpers.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/custom_text_button_widget.dart';
-import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/text_field_widget.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/register/register_viewmodel.dart';
+import 'package:whatsapp_stacked_architecture/ui/views/register/widgets/register_confirm_password_text_field_widget.dart';
+import 'package:whatsapp_stacked_architecture/ui/views/register/widgets/register_email_text_field_widget.dart';
+import 'package:whatsapp_stacked_architecture/ui/views/register/widgets/register_first_name_text_field_widget.dart';
+import 'package:whatsapp_stacked_architecture/ui/views/register/widgets/register_last_name_text_field_widget.dart';
+import 'package:whatsapp_stacked_architecture/ui/views/register/widgets/register_password_text_field_widget.dart';
 
 class RegisterView extends StackedView<RegisterViewModel> {
   const RegisterView({Key? key}) : super(key: key);
@@ -30,44 +34,17 @@ class RegisterView extends StackedView<RegisterViewModel> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  TextFieldWidget(
-                    textEditingController: viewModel.firstNameController,
-                    width: 0.39.sw,
-                    hintText: "First Name",
-                    prefixIcon: const Icon(Icons.person_outline),
-                  ),
+                  RegisterFirstNameTextFieldWidget(viewModel: viewModel),
                   horizontalSpaceTiny,
-                  TextFieldWidget(
-                    textEditingController: viewModel.lastNameController,
-                    width: 0.39.sw,
-                    hintText: "Last Name",
-                    prefixIcon: const Icon(Icons.person_outline),
-                  )
+                  RegisterLastNameTextFieldWidget(viewModel: viewModel)
                 ],
               ),
               verticalSpace(0.03.sh),
-              TextFieldWidget(
-                textEditingController: viewModel.emailController,
-                width: 0.78.sw,
-                hintText: "Email",
-                prefixIcon: const Icon(Icons.email_outlined),
-              ),
+              RegisterEmailTextFieldWidget(viewModel: viewModel),
               verticalSpace(0.03.sh),
-              TextFieldWidget(
-                isObscure: true,
-                textEditingController: viewModel.passwordController,
-                width: 0.78.sw,
-                hintText: "Password",
-                prefixIcon: const Icon(Icons.lock_outline),
-              ),
+              RegisterPasswordTextFieldWidget(viewModel: viewModel),
               verticalSpace(0.03.sh),
-              TextFieldWidget(
-                isObscure: true,
-                textEditingController: viewModel.confirmPasswordController,
-                width: 0.78.sw,
-                hintText: "Confirm Password",
-                prefixIcon: const Icon(Icons.lock_outline),
-              ),
+              RegisterConfirmPasswordTextFieldWidget(viewModel: viewModel),
               verticalSpace(0.03.sh),
               CustomTextButtonWidget(
                   textInButton: "Sign Up",
@@ -75,6 +52,7 @@ class RegisterView extends StackedView<RegisterViewModel> {
                     await viewModel.createNewUser();
                     if (context.mounted) {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          backgroundColor: viewModel.responseSnackbarColor,
                           content: Center(
                               child: Text(viewModel.signUpResponseMessage))));
                     }
