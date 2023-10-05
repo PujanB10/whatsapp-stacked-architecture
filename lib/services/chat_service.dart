@@ -9,7 +9,7 @@ class ChatService {
   /// Stream method that takes [chatId] as argument and fetches the
   /// chat messages of the given [chatId] from the database.
   Stream<List<ChatModel>> fetchChatMessages({required String chatId}) {
-    var list = db
+    return db
         .collection("messages")
         .doc(chatId)
         .collection("message")
@@ -17,8 +17,7 @@ class ChatService {
         .snapshots()
         .map((snapshot) => snapshot.docs)
         .map((docs) => docs.map((doc) => ChatModel.fromJson(doc)).toList());
-    debugPrint(list.toString());
-    return list;
+    // debugPrint(list.toString());
   }
 
   /// Future Method that takes in [chatId] and [messageInfo] as argument and
