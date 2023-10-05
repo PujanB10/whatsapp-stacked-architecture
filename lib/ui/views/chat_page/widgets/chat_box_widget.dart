@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:whatsapp_stacked_architecture/ui/common/ui_helpers.dart';
 
 /// Custom chat boxes for displaying chat messages.
@@ -26,27 +27,24 @@ class ChatBox extends StatelessWidget {
                 isUser ? MainAxisAlignment.end : MainAxisAlignment.start,
             children: [
               horizontalSpaceSmall,
-              Flexible(
-                flex: 2,
-                child: Container(
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
+              Container(
+                constraints: BoxConstraints(maxWidth: 0.8.sw),
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
 
-                    /// Sets the color of chatbox to green if the message is received.
-                    /// Sets the color of chatbox to white if the message is sent.
-                    color: isUser
-                        ? Theme.of(context).colorScheme.primary.withOpacity(0.5)
-                        : kDefaultIconLightColor,
-                  ),
-                  child: Text(
-                    message,
-                    style: Theme.of(context).textTheme.bodyLarge,
-                  ),
+                  /// Sets the color of chatbox to green if the message is received.
+                  /// Sets the color of chatbox to white if the message is sent.
+                  color: isUser
+                      ? Theme.of(context).colorScheme.primary.withOpacity(0.5)
+                      : kDefaultIconLightColor,
+                ),
+                child: Text(
+                  message,
+                  style: Theme.of(context).textTheme.bodyLarge,
                 ),
               ),
               horizontalSpaceSmall,
-              verticalSpaceLarge,
             ],
           )
         : Container();
