@@ -33,7 +33,7 @@ class RegisterViewModel extends BaseViewModel {
   Future<void> createNewUser() async {
     // Recives the response given by the service class
     final response = await _createNewUserService.createNewUser(
-        emailController.text, passwordController.text);
+        email: emailController.text, password: passwordController.text);
 
     // If the response received contains keyword successful adds the user
     // to the database and navigates to Home Page.
