@@ -49,9 +49,9 @@ class ChatPageViewModel extends FormViewModel {
             sentBy: _currentUserId,
             sentTime: Timestamp.now())
         .toJson();
+    messageInputController.clear();
     await _chatService.addMessageInDatabase(
         messageInfo: messageInfo, chatId: chatId);
-    messageInputController.clear();
   }
 
   /// Method that calls the service to fetch chat messages from
