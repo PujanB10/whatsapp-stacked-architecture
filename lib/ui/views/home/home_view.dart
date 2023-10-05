@@ -15,6 +15,8 @@ class HomeView extends StackedView<HomeViewModel> {
   ) {
     return WillPopScope(
       onWillPop: () async {
+        // If returns true, the app is closed and if false
+        // the app continues.
         return viewModel.isExitDialog();
       },
       child: DefaultTabController(
