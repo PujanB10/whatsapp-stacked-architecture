@@ -17,7 +17,7 @@ class WhatsappTheme {
         bodyMedium: const TextStyle(
           fontSize: AppFontSizes.small,
         ),
-        titleMedium: TextStyle(fontSize: 22.sp, color: Colors.white),
+        titleMedium: TextStyle(fontSize: 20.sp, color: Colors.white),
         titleSmall: const TextStyle(
           fontSize: AppFontSizes.smallLarge,
           fontWeight: FontWeight.bold,
