@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stacked/stacked.dart';
 import 'package:whatsapp_stacked_architecture/ui/common/ui_helpers.dart';
+import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/body_text_widget.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/custom_text_button_widget.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/page_title_text_widget.dart';
+import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/snackbar_text_widget.dart';
+import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/text_button_text_widget.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/login/widgets/login_email_text_field_widget.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/login/widgets/login_password_text_field_widget.dart';
 import 'login_viewmodel.dart';
@@ -39,7 +42,7 @@ class LoginView extends StackedView<LoginViewModel> {
                 ),
                 TextButton(
                   onPressed: () {},
-                  child: const Text("Forgot password?"),
+                  child: const TextButtonTextWidget(text: "Forgot password?"),
                 ),
                 verticalSpace(0.01.sh),
                 CustomTextButtonWidget(
@@ -50,8 +53,8 @@ class LoginView extends StackedView<LoginViewModel> {
                         SnackBar(
                           backgroundColor:
                               viewModel.snackBarColorOnAuthentication,
-                          content: Center(
-                              child: Text(viewModel.logInResponseMessage)),
+                          content: SnackbarTextWidget(
+                              text: viewModel.logInResponseMessage),
                         ),
                       );
                     }
@@ -59,12 +62,12 @@ class LoginView extends StackedView<LoginViewModel> {
                   textInButton: "Log In",
                 ),
                 verticalSpace(0.03.sh),
-                const Text("or"),
+                const BodyTextWidget(text: "or"),
                 TextButton(
                     onPressed: () {
                       viewModel.navigateToRegisterView();
                     },
-                    child: const Text("Sign Up")),
+                    child: const TextButtonTextWidget(text: "Sign Up")),
                 verticalSpace(0.01.sh),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
