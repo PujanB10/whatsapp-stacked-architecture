@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
 import 'package:whatsapp_stacked_architecture/ui/common/ui_helpers.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/custom_text_button_widget.dart';
+import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/page_title_text_widget.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/login/widgets/login_email_text_field_widget.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/login/widgets/login_password_text_field_widget.dart';
 import 'login_viewmodel.dart';
@@ -28,10 +28,7 @@ class LoginView extends StackedView<LoginViewModel> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Text(
-                  "Log In",
-                  style: GoogleFonts.acme(fontSize: 50.sp),
-                ),
+                const PageTitleTextWidget(text: "Log In"),
                 verticalSpace(0.03.sh),
                 LoginEmailTextFieldWidget(
                   viewModel: viewModel,
@@ -53,7 +50,8 @@ class LoginView extends StackedView<LoginViewModel> {
                         SnackBar(
                           backgroundColor:
                               viewModel.snackBarColorOnAuthentication,
-                          content: Text(viewModel.logInResponseMessage),
+                          content: Center(
+                              child: Text(viewModel.logInResponseMessage)),
                         ),
                       );
                     }
