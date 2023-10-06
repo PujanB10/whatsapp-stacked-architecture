@@ -3,6 +3,7 @@ import 'package:whatsapp_stacked_architecture/datamodels/chat_model.dart';
 import 'package:whatsapp_stacked_architecture/ui/common/ui_helpers.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/chat_page/chat_page_viewmodel.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/chat_page/widgets/chat_box_widget.dart';
+import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/loading_widget.dart';
 
 /// A messages viewing widget for building a list of chat messages.
 class MesssageListViewWidget extends StatelessWidget {
@@ -40,7 +41,7 @@ class MesssageListViewWidget extends StatelessWidget {
                   );
                 });
           } else {
-            return const Center(child: CircularProgressIndicator());
+            return const LoadingWidget();
           }
         });
     // return Container();
