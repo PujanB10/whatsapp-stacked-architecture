@@ -44,14 +44,17 @@ class ChatPageViewModel extends FormViewModel {
   /// the user to the database.
   void addMessages() async {
     /// Converting the message typed in by the user into Chat model.
-    Map<String, dynamic> messageInfo = ChatModel(
-            message: messageInputController.text,
-            sentBy: _currentUserId,
-            sentTime: Timestamp.now())
-        .toJson();
-    messageInputController.clear();
-    await _chatService.addMessageInDatabase(
-        messageInfo: messageInfo, chatId: chatId);
+
+    if (messageInputController.text.isNotEmpty) {
+      Map<String, dynamic> messageInfo = ChatModel(
+              message: messageInputController.text,
+              sentBy: _currentUserId,
+              sentTime: Timestamp.now())
+          .toJson();
+      messageInputController.clear();
+      await _chatService.addMessageInDatabase(
+          messageInfo: messageInfo, chatId: chatId);
+    }
   }
 
   /// Method that calls the service to fetch chat messages from
