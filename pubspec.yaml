@@ -55,9 +55,13 @@ flutter:
 
   # Assets used in the app
   assets:
-    - assets/images/startup-image.png
-    - assets/images/icon1.jpeg
-    - assets/images/icon2.png
+    # - assets/images/startup-image.png
+    # - assets/images/icon1.jpeg
+    - assets/images/
+    - assets/icons/
+    # - assets/icons/facebook-icon.png
+    # - assets/icons/google-icon.png
+
 
 
 
