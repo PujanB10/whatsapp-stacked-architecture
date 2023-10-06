@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_stacked_architecture/datamodels/user_model.dart';
 import 'package:whatsapp_stacked_architecture/gen/assets.gen.dart';
+import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/title_text_widget.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/home/home_viewmodel.dart';
 
 /// A message view widget that views list of users with their last messages.
@@ -27,8 +28,9 @@ class UsersListViewWidget extends StatelessWidget {
                 return ListView.builder(
                   itemCount: listOfUsers.length,
                   itemBuilder: ((context, index) => ListTile(
-                        title: Text(
-                            "${listOfUsers[index].firstName} ${listOfUsers[index].lastName}"),
+                        title: TitleTextWidget(
+                            text:
+                                "${listOfUsers[index].firstName} ${listOfUsers[index].lastName}"),
                         subtitle: Text(listOfUsers[index].email),
                         visualDensity: const VisualDensity(vertical: 4),
                         leading: CircleAvatar(
