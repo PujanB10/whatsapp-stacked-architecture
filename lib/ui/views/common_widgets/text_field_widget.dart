@@ -38,12 +38,14 @@ class TextFieldWidget extends StatelessWidget {
     return SizedBox(
       width: width,
       child: TextField(
+        style: Theme.of(context).textTheme.bodyLarge,
         obscureText: isObscure,
         controller: textEditingController,
         decoration: InputDecoration(
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(30)),
             prefixIcon: prefixIcon,
-            hintText: hintText),
+            hintText: hintText,
+            hintStyle: Theme.of(context).textTheme.labelLarge),
       ),
     );
   }
