@@ -48,17 +48,17 @@ class RegisterViewModel extends BaseViewModel {
               // the userId from the response.
               userId: response.split(":")[1])
           .toJson();
-
+      _signUpResponseMessage =
+          "New user with given credentials has been created";
+      _responseSnackbarColor = Colors.green;
       // Add the user to the database.
       await _createNewUserService.addInDatabase(user);
-      _signUpResponseMessage = "New user with given user has been created";
-      _responseSnackbarColor = Colors.green;
-      _navigationService.replaceWithHomeView();
+      _navigationService.clearStackAndShow(Routes.homeView);
     }
 
     // If response recives weak-password message show the given message in
     // the snackbar.
-    if (response == 'weak-password') {
+    else if (response == 'weak-password') {
       debugPrint('The password provided is too weak.');
       _signUpResponseMessage = "The password provided is too weak.";
 
@@ -68,6 +68,9 @@ class RegisterViewModel extends BaseViewModel {
       debugPrint('The account already exists for that email.');
       _signUpResponseMessage = "The account already exists for that email.";
 
+      // If no credentials have been given, show the given message in snackbar.
+    } else if (response == "channel-error") {
+      _signUpResponseMessage = "Please type in the required credentials";
       // If faced any other errors shows the response message in the snackbar.
     } else {
       debugPrint(response);
