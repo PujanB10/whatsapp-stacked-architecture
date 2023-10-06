@@ -5,6 +5,8 @@ import 'package:whatsapp_stacked_architecture/ui/common/ui_helpers.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/body_text_widget.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/custom_text_button_widget.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/page_title_text_widget.dart';
+import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/snackbar_text_widget.dart';
+import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/text_button_text_widget.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/register/register_viewmodel.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/register/widgets/register_confirm_password_text_field_widget.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/register/widgets/register_email_text_field_widget.dart';
@@ -54,10 +56,8 @@ class RegisterView extends StackedView<RegisterViewModel> {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         backgroundColor: viewModel.responseSnackbarColor,
-                        content: Center(
-                          child: BodyTextWidget(
-                              text: viewModel.signUpResponseMessage),
-                        ),
+                        content: SnackbarTextWidget(
+                            text: viewModel.signUpResponseMessage),
                       ),
                     );
                   }
@@ -69,7 +69,7 @@ class RegisterView extends StackedView<RegisterViewModel> {
                   onPressed: () {
                     viewModel.navigateToLoginView();
                   },
-                  child: const Text("Sign In"))
+                  child: const TextButtonTextWidget(text: "Sign In"))
             ],
           ),
         ),
