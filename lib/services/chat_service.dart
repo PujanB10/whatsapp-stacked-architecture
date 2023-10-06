@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'package:whatsapp_stacked_architecture/datamodels/chat_model.dart';
 
 /// Service class that helps with different chat features.
