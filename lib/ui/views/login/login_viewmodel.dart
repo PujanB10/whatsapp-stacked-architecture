@@ -49,6 +49,10 @@ class LoginViewModel extends BaseViewModel {
       _snackBarColorOnAuthentication = Colors.lightGreen;
       debugPrint(_logInResponseMessage);
       _navigationService.replaceWithHomeView();
+
+      // If no credentials have been given, show the given message in snackbar.
+    } else if (response == "channel-error") {
+      _logInResponseMessage = "Please type in the required credentials";
     }
   }
 
@@ -65,7 +69,7 @@ class LoginViewModel extends BaseViewModel {
   /// Returns ``` false ``` if denied to exit.
   Future<bool> isSupposedToExit() async {
     final res = await _dialogService.showConfirmationDialog(
-        title: "Do you want to exit?");
+        description: "Do you want to exit?");
     return res == null ? false : res.confirmed;
   }
 
