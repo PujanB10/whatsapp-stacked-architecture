@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/app_bar_title_text_widget.dart';
 
 /// A appbar for displaying information and other functionalities.
 class HomeViewAppBarWidget extends StatelessWidget
@@ -19,7 +20,11 @@ class HomeViewAppBarWidget extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: const Text('WhatsApp'),
+      automaticallyImplyLeading: false,
+      title: const AppBarTitleTextWidget(
+        text: 'WhatsApp',
+        // style: Theme.of(context).textTheme.titleSmall,
+      ),
       actions: <Widget>[
         buildIconButton(const Icon(Icons.camera_alt_outlined)),
         buildIconButton(const Icon(Icons.search)),
