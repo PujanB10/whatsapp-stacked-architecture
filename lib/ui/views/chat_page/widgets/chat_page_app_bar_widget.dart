@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/chat_page/chat_page_viewmodel.dart';
+import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/app_bar_title_text_widget.dart';
 
 class ChatPageAppBarWidget extends StatelessWidget
     implements PreferredSizeWidget {
@@ -28,7 +29,9 @@ class ChatPageAppBarWidget extends StatelessWidget
           const Padding(
             padding: EdgeInsets.all(8),
           ),
-          Text(username)
+          AppBarTitleTextWidget(
+            text: username,
+          )
         ],
       ),
       actions: [
