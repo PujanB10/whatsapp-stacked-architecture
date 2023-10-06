@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
 import 'package:whatsapp_stacked_architecture/ui/common/ui_helpers.dart';
+import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/body_text_widget.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/custom_text_button_widget.dart';
+import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/page_title_text_widget.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/register/register_viewmodel.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/register/widgets/register_confirm_password_text_field_widget.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/register/widgets/register_email_text_field_widget.dart';
@@ -26,9 +27,8 @@ class RegisterView extends StackedView<RegisterViewModel> {
           child: Column(
             children: [
               verticalSpaceMassive,
-              Text(
-                "Sign Up",
-                style: GoogleFonts.acme(fontSize: 50.sp),
+              const PageTitleTextWidget(
+                text: "Sign Up",
               ),
               verticalSpace(0.03.sh),
               Row(
@@ -47,18 +47,24 @@ class RegisterView extends StackedView<RegisterViewModel> {
               RegisterConfirmPasswordTextFieldWidget(viewModel: viewModel),
               verticalSpace(0.03.sh),
               CustomTextButtonWidget(
-                  textInButton: "Sign Up",
-                  onPressed: () async {
-                    await viewModel.createNewUser();
-                    if (context.mounted) {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          backgroundColor: viewModel.responseSnackbarColor,
-                          content: Center(
-                              child: Text(viewModel.signUpResponseMessage))));
-                    }
-                  }),
+                textInButton: "Sign Up",
+                onPressed: () async {
+                  await viewModel.createNewUser();
+                  if (context.mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        backgroundColor: viewModel.responseSnackbarColor,
+                        content: Center(
+                          child: BodyTextWidget(
+                              text: viewModel.signUpResponseMessage),
+                        ),
+                      ),
+                    );
+                  }
+                },
+              ),
               verticalSpace(0.03.sh),
-              const Text("Already a user?"),
+              const BodyTextWidget(text: "Already a user?"),
               TextButton(
                   onPressed: () {
                     viewModel.navigateToLoginView();
