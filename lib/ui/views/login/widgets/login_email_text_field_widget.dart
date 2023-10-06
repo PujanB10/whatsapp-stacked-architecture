@@ -16,7 +16,7 @@ class LoginEmailTextFieldWidget extends StatelessWidget {
       textEditingController: viewModel.emailController,
       width: 0.78.sw,
       hintText: "Email",
-      prefixIcon: const Icon(Icons.person_2_outlined),
+      prefixIcon: const Icon(Icons.email_outlined),
     );
   }
 }
