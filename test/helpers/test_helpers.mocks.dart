@@ -7,22 +7,21 @@ import 'dart:async' as _i5;
 import 'dart:ui' as _i6;
 
 import 'package:cloud_firestore/cloud_firestore.dart' as _i2;
-import 'package:firebase_auth/firebase_auth.dart' as _i8;
 import 'package:flutter/material.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:stacked_services/stacked_services.dart' as _i3;
 import 'package:whatsapp_stacked_architecture/datamodels/chat_model.dart'
-    as _i13;
-import 'package:whatsapp_stacked_architecture/datamodels/user_model.dart'
-    as _i11;
-import 'package:whatsapp_stacked_architecture/services/chat_service.dart'
     as _i12;
+import 'package:whatsapp_stacked_architecture/datamodels/user_model.dart'
+    as _i10;
+import 'package:whatsapp_stacked_architecture/services/chat_service.dart'
+    as _i11;
 import 'package:whatsapp_stacked_architecture/services/create_new_user_service.dart'
     as _i7;
 import 'package:whatsapp_stacked_architecture/services/fetch_user_list_service.dart'
-    as _i10;
-import 'package:whatsapp_stacked_architecture/services/login_service_service.dart'
     as _i9;
+import 'package:whatsapp_stacked_architecture/services/login_service_service.dart'
+    as _i8;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -38,17 +37,6 @@ import 'package:whatsapp_stacked_architecture/services/login_service_service.dar
 class _FakeFirebaseFirestore_0 extends _i1.SmartFake
     implements _i2.FirebaseFirestore {
   _FakeFirebaseFirestore_0(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-}
-
-class _FakeDocumentReference_1<T extends Object?> extends _i1.SmartFake
-    implements _i2.DocumentReference<T> {
-  _FakeDocumentReference_1(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -682,21 +670,22 @@ class MockCreateNewUserService extends _i1.Mock
         ),
       ) as _i2.FirebaseFirestore);
   @override
-  _i5.Future<_i8.UserCredential?> createNewUser(
-    String? email,
-    String? password,
-  ) =>
+  _i5.Future<String> createNewUser({
+    required String? email,
+    required String? password,
+  }) =>
       (super.noSuchMethod(
         Invocation.method(
           #createNewUser,
-          [
-            email,
-            password,
-          ],
+          [],
+          {
+            #email: email,
+            #password: password,
+          },
         ),
-        returnValue: _i5.Future<_i8.UserCredential?>.value(),
-        returnValueForMissingStub: _i5.Future<_i8.UserCredential?>.value(),
-      ) as _i5.Future<_i8.UserCredential?>);
+        returnValue: _i5.Future<String>.value(''),
+        returnValueForMissingStub: _i5.Future<String>.value(''),
+      ) as _i5.Future<String>);
   @override
   _i5.Future<void> addInDatabase(Map<String, dynamic>? user) =>
       (super.noSuchMethod(
@@ -713,7 +702,21 @@ class MockCreateNewUserService extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockLoginServiceService extends _i1.Mock
-    implements _i9.LoginServiceService {
+    implements _i8.LoginServiceService {
+  @override
+  String get responseCode => (super.noSuchMethod(
+        Invocation.getter(#responseCode),
+        returnValue: '',
+        returnValueForMissingStub: '',
+      ) as String);
+  @override
+  set responseCode(String? _responseCode) => super.noSuchMethod(
+        Invocation.setter(
+          #responseCode,
+          _responseCode,
+        ),
+        returnValueForMissingStub: null,
+      );
   @override
   _i5.Future<String> logIn(
     String? email,
@@ -736,7 +739,7 @@ class MockLoginServiceService extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockFetchUserListService extends _i1.Mock
-    implements _i10.FetchUserListService {
+    implements _i9.FetchUserListService {
   @override
   _i2.FirebaseFirestore get db => (super.noSuchMethod(
         Invocation.getter(#db),
@@ -750,13 +753,13 @@ class MockFetchUserListService extends _i1.Mock
         ),
       ) as _i2.FirebaseFirestore);
   @override
-  List<_i11.Users> get listOfUsers => (super.noSuchMethod(
+  List<_i10.Users> get listOfUsers => (super.noSuchMethod(
         Invocation.getter(#listOfUsers),
-        returnValue: <_i11.Users>[],
-        returnValueForMissingStub: <_i11.Users>[],
-      ) as List<_i11.Users>);
+        returnValue: <_i10.Users>[],
+        returnValueForMissingStub: <_i10.Users>[],
+      ) as List<_i10.Users>);
   @override
-  set listOfUsers(List<_i11.Users>? _listOfUsers) => super.noSuchMethod(
+  set listOfUsers(List<_i10.Users>? _listOfUsers) => super.noSuchMethod(
         Invocation.setter(
           #listOfUsers,
           _listOfUsers,
@@ -764,20 +767,20 @@ class MockFetchUserListService extends _i1.Mock
         returnValueForMissingStub: null,
       );
   @override
-  _i5.Stream<List<_i11.Users>> fetchUserList() => (super.noSuchMethod(
+  _i5.Stream<List<_i10.Users>> fetchUserList() => (super.noSuchMethod(
         Invocation.method(
           #fetchUserList,
           [],
         ),
-        returnValue: _i5.Stream<List<_i11.Users>>.empty(),
-        returnValueForMissingStub: _i5.Stream<List<_i11.Users>>.empty(),
-      ) as _i5.Stream<List<_i11.Users>>);
+        returnValue: _i5.Stream<List<_i10.Users>>.empty(),
+        returnValueForMissingStub: _i5.Stream<List<_i10.Users>>.empty(),
+      ) as _i5.Stream<List<_i10.Users>>);
 }
 
 /// A class which mocks [ChatService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockChatService extends _i1.Mock implements _i12.ChatService {
+class MockChatService extends _i1.Mock implements _i11.ChatService {
   @override
   _i2.FirebaseFirestore get db => (super.noSuchMethod(
         Invocation.getter(#db),
@@ -791,52 +794,34 @@ class MockChatService extends _i1.Mock implements _i12.ChatService {
         ),
       ) as _i2.FirebaseFirestore);
   @override
-  _i5.Stream<List<_i13.ChatModel>> fetchChatMessages(String? chatId) =>
+  _i5.Stream<List<_i12.ChatModel>> fetchChatMessages(
+          {required String? chatId}) =>
       (super.noSuchMethod(
         Invocation.method(
           #fetchChatMessages,
-          [chatId],
+          [],
+          {#chatId: chatId},
         ),
-        returnValue: _i5.Stream<List<_i13.ChatModel>>.empty(),
-        returnValueForMissingStub: _i5.Stream<List<_i13.ChatModel>>.empty(),
-      ) as _i5.Stream<List<_i13.ChatModel>>);
+        returnValue: _i5.Stream<List<_i12.ChatModel>>.empty(),
+        returnValueForMissingStub: _i5.Stream<List<_i12.ChatModel>>.empty(),
+      ) as _i5.Stream<List<_i12.ChatModel>>);
   @override
-  _i5.Future<_i2.DocumentReference<Object?>> addMessageInDatabase(
-    Map<String, dynamic>? messageInfo,
-    String? chatId,
-  ) =>
+  _i5.Future<void> addMessageInDatabase({
+    required Map<String, dynamic>? messageInfo,
+    required String? chatId,
+  }) =>
       (super.noSuchMethod(
         Invocation.method(
           #addMessageInDatabase,
-          [
-            messageInfo,
-            chatId,
-          ],
+          [],
+          {
+            #messageInfo: messageInfo,
+            #chatId: chatId,
+          },
         ),
-        returnValue: _i5.Future<_i2.DocumentReference<Object?>>.value(
-            _FakeDocumentReference_1<Object?>(
-          this,
-          Invocation.method(
-            #addMessageInDatabase,
-            [
-              messageInfo,
-              chatId,
-            ],
-          ),
-        )),
-        returnValueForMissingStub:
-            _i5.Future<_i2.DocumentReference<Object?>>.value(
-                _FakeDocumentReference_1<Object?>(
-          this,
-          Invocation.method(
-            #addMessageInDatabase,
-            [
-              messageInfo,
-              chatId,
-            ],
-          ),
-        )),
-      ) as _i5.Future<_i2.DocumentReference<Object?>>);
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
 }
 
 /// A class which mocks [SnackbarService].

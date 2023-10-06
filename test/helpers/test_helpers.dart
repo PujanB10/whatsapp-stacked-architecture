@@ -29,7 +29,6 @@ void registerServices() {
   getAndRegisterLoginServiceService();
   getAndRegisterFetchUserListService();
   getAndRegisterChatService();
-  getAndRegisterSnackbarService();
 // @stacked-mock-register
 }
 
@@ -110,7 +109,6 @@ MockChatService getAndRegisterChatService() {
   locator.registerSingleton<ChatService>(service);
   return service;
 }
-
 
 // @stacked-mock-create
 
