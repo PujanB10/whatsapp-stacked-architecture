@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/chat_page/chat_page_viewmodel.dart';
 
+/// A floating action button that resides on bottom navigation bar.
 class BottomNavBarFloatingButton extends StatelessWidget {
+  /// Creates a [BottomNavBarFloatingButton] widget.
+  ///
+  /// Takes no parameter.
   const BottomNavBarFloatingButton({
     super.key,
-    required this.userName,
   });
-
-  final String userName;
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +17,8 @@ class BottomNavBarFloatingButton extends StatelessWidget {
       padding: const EdgeInsets.all(5),
       child: FloatingActionButton(
         onPressed: () {
-          /// Send the message and clears the message text field
-          /// on pressing the button.
+          /// Calls the method that adds message in the
+          /// database from the viewmodel.
           context.read<ChatPageViewModel>().addMessages();
         },
         child: context.watch<ChatPageViewModel>().defaultIcon,
