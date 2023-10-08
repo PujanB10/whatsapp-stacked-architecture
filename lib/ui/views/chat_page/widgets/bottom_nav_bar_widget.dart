@@ -37,7 +37,7 @@ class BottomNavBar extends StatelessWidget {
 
             /// Send or Record button that resides in the bottom navigation
             /// bar alongside message text field.
-            BottomNavBarFloatingButton(userName: userName),
+            const BottomNavBarFloatingButton(),
           ],
         ),
       ),
