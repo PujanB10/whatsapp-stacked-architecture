@@ -38,7 +38,7 @@ class MesssageListViewWidget extends StatelessWidget {
                       ChatBox(
                           message: listOfMessages[index].message,
                           isUser: chatPageViewModel
-                              .isUser(listOfMessages[index].sentBy)),
+                              .isCurrentUser(listOfMessages[index].sentBy)),
                     ],
                   );
                 });
