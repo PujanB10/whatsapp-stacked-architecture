@@ -28,6 +28,8 @@ class MesssageListViewWidget extends StatelessWidget {
           if (snapshot.hasData) {
             List<ChatModel> listOfMessages = snapshot.data!;
             return ListView.builder(
+                reverse: true,
+                controller: chatPageViewModel.chatScrollController,
                 itemCount: listOfMessages.length,
                 itemBuilder: (context, index) {
                   return Column(
