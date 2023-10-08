@@ -27,9 +27,9 @@ class HomeViewModel extends BaseViewModel {
   ///  "Cancel" returns false to the view.
   Future<bool> isExitDialog() async {
     // Display dialog from the dialog service.
-    final DialogResponse<dynamic>? res = await _dialogService
+    final DialogResponse<dynamic>? response = await _dialogService
         .showConfirmationDialog(title: "Do you want to exit?");
-    return (res!.confirmed);
+    return (response!.confirmed);
   }
 
   /// Method to call the service that fetches the list
