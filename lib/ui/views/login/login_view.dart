@@ -3,10 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stacked/stacked.dart';
 import 'package:whatsapp_stacked_architecture/ui/common/ui_helpers.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/body_text_widget.dart';
-import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/custom_text_button_widget.dart';
+import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/elevated_button_widget.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/page_title_text_widget.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/snackbar_text_widget.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/text_button_text_widget.dart';
+import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/text_button_widget.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/login/widgets/login_email_text_field_widget.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/login/widgets/login_password_text_field_widget.dart';
 import 'login_viewmodel.dart';
@@ -40,12 +41,12 @@ class LoginView extends StackedView<LoginViewModel> {
                 LoginPasswordTextFieldWidget(
                   viewModel: viewModel,
                 ),
-                TextButton(
+                TextButtonWidget(
                   onPressed: () {},
-                  child: const TextButtonTextWidget(text: "Forgot password?"),
+                  text: "Forgot Password",
                 ),
                 verticalSpace(0.01.sh),
-                CustomTextButtonWidget(
+                ElevatedButtonWidget(
                   onPressed: () async {
                     await viewModel.logIn();
                     if (context.mounted) {
@@ -63,11 +64,11 @@ class LoginView extends StackedView<LoginViewModel> {
                 ),
                 verticalSpace(0.03.sh),
                 const BodyTextWidget(text: "or"),
-                TextButton(
+                TextButtonWidget(
                     onPressed: () {
                       viewModel.navigateToRegisterView();
                     },
-                    child: const TextButtonTextWidget(text: "Sign Up")),
+                    text: "Sign Up"),
                 verticalSpace(0.01.sh),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
