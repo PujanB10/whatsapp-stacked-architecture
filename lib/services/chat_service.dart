@@ -12,7 +12,7 @@ class ChatService {
         .collection("messages")
         .doc(chatId)
         .collection("message")
-        .orderBy("sentTime")
+        .orderBy("sentTime", descending: true)
         .snapshots()
         .map((snapshot) => snapshot.docs)
         .map((docs) => docs.map((doc) => ChatModel.fromJson(doc)).toList());
