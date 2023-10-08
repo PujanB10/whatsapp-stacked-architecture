@@ -11,12 +11,14 @@ class ChatPageViewModel extends FormViewModel {
   final _chatService = locator<ChatService>();
   final _navigationService = locator<NavigationService>();
   final TextEditingController messageInputController = TextEditingController();
+  final ScrollController _chatScrollController = ScrollController();
   Icon _defaultIcon = const Icon(Icons.mic);
   Icon get defaultIcon => _defaultIcon;
   final String _currentUserId = FirebaseAuth.instance.currentUser!.uid;
   String _chatId = "";
-  get chatId => _chatId;
-  get currentUserId => _currentUserId;
+  String get chatId => _chatId;
+  String get currentUserId => _currentUserId;
+  ScrollController get chatScrollController => _chatScrollController;
 
   /// Takes in [checkUserId] parameter and checks if it is
   /// the user that is currently logged ni to the app.
