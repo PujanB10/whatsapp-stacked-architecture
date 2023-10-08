@@ -48,14 +48,14 @@ class LoginView extends StackedView<LoginViewModel> {
                 verticalSpace(0.01.sh),
                 ElevatedButtonWidget(
                   onPressed: () async {
-                    await viewModel.logIn();
+                    await viewModel.requestLoginApi();
                     if (context.mounted) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           backgroundColor:
                               viewModel.snackBarColorOnAuthentication,
                           content: SnackbarTextWidget(
-                              text: viewModel.logInResponseMessage),
+                              text: viewModel.requestLoginApiResponseMessage),
                         ),
                       );
                     }

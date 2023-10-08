@@ -12,7 +12,7 @@ class LoginServiceService {
   ///
   /// Tries to authenticate and sign in with the given email
   /// and password in the Firebase Authentication Service.
-  Future<String> logIn(String email, String password) async {
+  Future<String> requestLoginApi(String email, String password) async {
     try {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);

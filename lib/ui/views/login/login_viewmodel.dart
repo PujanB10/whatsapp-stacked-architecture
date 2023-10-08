@@ -7,11 +7,11 @@ import 'package:whatsapp_stacked_architecture/services/login_service_service.dar
 
 class LoginViewModel extends BaseViewModel {
   /// Initializing services used in the Login page.
-  final _logInService = locator<LoginServiceService>();
+  final _requestLoginApiService = locator<LoginServiceService>();
   final _navigationService = locator<NavigationService>();
   final _dialogService = locator<DialogService>();
 
-  String _logInResponseMessage = "";
+  String _requestLoginApiResponseMessage = "";
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   Color _snackBarColorOnAuthentication = Colors.red;
@@ -19,40 +19,42 @@ class LoginViewModel extends BaseViewModel {
   /// Get methods to access the private variables.
   TextEditingController get emailController => _emailController;
   TextEditingController get passwordController => _passwordController;
-  String get logInResponseMessage => _logInResponseMessage;
+  String get requestLoginApiResponseMessage => _requestLoginApiResponseMessage;
   Color get snackBarColorOnAuthentication => _snackBarColorOnAuthentication;
 
-  /// Async function that calls [logIn] service from the
+  /// Async function that calls [requestLoginApi] service from the
   /// service class
-  Future<void> logIn() async {
-    final String response = await _logInService.logIn(
+  Future<void> requestLoginApi() async {
+    final String response = await _requestLoginApiService.requestLoginApi(
         emailController.text, passwordController.text);
     debugPrint("response ========> $response");
 
     /// If the email given by user is not valid, returns the given
     /// message to the snackbar.
     if (response == "invalid-email") {
-      _logInResponseMessage = "The email you have entered is not valid.";
+      _requestLoginApiResponseMessage =
+          "The email you have entered is not valid.";
     }
 
     /// If the credentials given by user is not valid, returns
     /// the given message to the snackbar.
     else if (response == "INVALID_LOGIN_CREDENTIALS") {
-      _logInResponseMessage =
+      _requestLoginApiResponseMessage =
           "The email or password you've entered is incorrect.";
 
       /// If the credentials given by user is valid and on completion
       /// of signing in returns the given message and navigates to
       ///  Home Page
     } else if (response == "Successful") {
-      _logInResponseMessage = "You have been loggen in.";
+      _requestLoginApiResponseMessage = "You have been loggen in.";
       _snackBarColorOnAuthentication = Colors.lightGreen;
-      debugPrint(_logInResponseMessage);
-      _navigationService.replaceWithHomeView();
+      debugPrint(_requestLoginApiResponseMessage);
+      _navigationService.clearStackAndShow(Routes.homeView);
 
       // If no credentials have been given, show the given message in snackbar.
     } else if (response == "channel-error") {
-      _logInResponseMessage = "Please type in the required credentials";
+      _requestLoginApiResponseMessage =
+          "Please type in the required credentials";
     }
   }
 

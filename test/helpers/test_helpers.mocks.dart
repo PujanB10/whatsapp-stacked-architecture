@@ -718,13 +718,13 @@ class MockLoginServiceService extends _i1.Mock
         returnValueForMissingStub: null,
       );
   @override
-  _i5.Future<String> logIn(
+  _i5.Future<String> requestLoginApi(
     String? email,
     String? password,
   ) =>
       (super.noSuchMethod(
         Invocation.method(
-          #logIn,
+          #requestLoginApi,
           [
             email,
             password,
