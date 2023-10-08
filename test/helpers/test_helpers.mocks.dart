@@ -670,13 +670,13 @@ class MockCreateNewUserService extends _i1.Mock
         ),
       ) as _i2.FirebaseFirestore);
   @override
-  _i5.Future<String> createNewUser({
+  _i5.Future<String> requestCreateNewUserApi({
     required String? email,
     required String? password,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
-          #createNewUser,
+          #requestCreateNewUserApi,
           [],
           {
             #email: email,

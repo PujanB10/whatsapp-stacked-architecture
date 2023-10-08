@@ -52,7 +52,7 @@ class RegisterView extends StackedView<RegisterViewModel> {
               ElevatedButtonWidget(
                 textInButton: "Sign Up",
                 onPressed: () async {
-                  await viewModel.createNewUser();
+                  await viewModel.requestCreateNewUserApi();
                   if (context.mounted) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(

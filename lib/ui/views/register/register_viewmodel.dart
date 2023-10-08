@@ -7,7 +7,7 @@ import 'package:whatsapp_stacked_architecture/datamodels/user_model.dart';
 import 'package:whatsapp_stacked_architecture/services/create_new_user_service.dart';
 
 class RegisterViewModel extends BaseViewModel {
-  final _createNewUserService = locator<CreateNewUserService>();
+  final _requestCreateNewUserApiService = locator<CreateNewUserService>();
   final _navigationService = locator<NavigationService>();
 
   final TextEditingController _firstNameController = TextEditingController();
@@ -30,10 +30,11 @@ class RegisterViewModel extends BaseViewModel {
   Color get responseSnackbarColor => _responseSnackbarColor;
 
   /// Async function that calls service to create a new user.
-  Future<void> createNewUser() async {
+  Future<void> requestCreateNewUserApi() async {
     // Recives the response given by the service class
-    final response = await _createNewUserService.createNewUser(
-        email: emailController.text, password: passwordController.text);
+    final response =
+        await _requestCreateNewUserApiService.requestCreateNewUserApi(
+            email: emailController.text, password: passwordController.text);
 
     // If the response received contains keyword successful adds the user
     // to the database and navigates to Home Page.
@@ -52,7 +53,7 @@ class RegisterViewModel extends BaseViewModel {
           "New user with given credentials has been created";
       _responseSnackbarColor = Colors.green;
       // Add the user to the database.
-      await _createNewUserService.addInDatabase(user);
+      await _requestCreateNewUserApiService.addInDatabase(user);
       _navigationService.clearStackAndShow(Routes.homeView);
     }
 

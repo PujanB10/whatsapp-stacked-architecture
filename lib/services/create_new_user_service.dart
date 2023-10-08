@@ -12,7 +12,7 @@ class CreateNewUserService {
   ///
   /// A future method that calls the service to create new user from
   /// Firebase Auth with the given credentials.
-  Future<String> createNewUser(
+  Future<String> requestCreateNewUserApi(
       {required String email, required String password}) async {
     try {
       /// Stores the user credential in the credential variable
