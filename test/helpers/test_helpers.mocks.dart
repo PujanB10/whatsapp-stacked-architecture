@@ -687,10 +687,11 @@ class MockCreateNewUserService extends _i1.Mock
         returnValueForMissingStub: _i5.Future<String>.value(''),
       ) as _i5.Future<String>);
   @override
-  _i5.Future<void> addInDatabase(Map<String, dynamic>? user) =>
+  _i5.Future<void> requestAddMessagesInDatabaseApi(
+          Map<String, dynamic>? user) =>
       (super.noSuchMethod(
         Invocation.method(
-          #addInDatabase,
+          #requestAddMessagesInDatabaseApi,
           [user],
         ),
         returnValue: _i5.Future<void>.value(),
