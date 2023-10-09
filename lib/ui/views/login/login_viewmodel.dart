@@ -62,12 +62,13 @@ class LoginViewModel extends BaseViewModel {
     _navigationService.navigateToRegisterView();
   }
 
-  /// Method that shows an exit dialog through Stacked service
-  /// and return boolean value according to user's input.
+  /// Whether to exit the app or not.
   ///
-  /// Returns ``` true ``` if confirmed to exit.
+  /// This method shows an exit dialog through stacked services asking if the
+  /// user wants to exit the app or not.
   ///
-  /// Returns ``` false ``` if denied to exit.
+  /// Returns [true] if confirmed to exit.
+  /// Returns [false] if denied to exit.
   Future<bool> isSupposedToExit() async {
     final DialogResponse<dynamic>? response = await _dialogService
         .showConfirmationDialog(title: "Do you want to exit?");
