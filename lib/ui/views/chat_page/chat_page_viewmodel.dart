@@ -14,7 +14,7 @@ class ChatPageViewModel extends FormViewModel {
   final ScrollController _chatScrollController = ScrollController();
   Icon _defaultIcon = const Icon(Icons.mic);
   Icon get defaultIcon => _defaultIcon;
-  final String _currentUserId = FirebaseAuth.instance.currentUser!.uid;
+  final String _currentUserId = FirebaseAuth.instance.currentUser?.uid ?? "";
   String _chatId = "";
   String get chatId => _chatId;
   String get currentUserId => _currentUserId;

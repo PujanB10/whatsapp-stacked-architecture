@@ -670,13 +670,13 @@ class MockCreateNewUserService extends _i1.Mock
         ),
       ) as _i2.FirebaseFirestore);
   @override
-  _i5.Future<String> createNewUser({
+  _i5.Future<String> requestCreateNewUserApi({
     required String? email,
     required String? password,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
-          #createNewUser,
+          #requestCreateNewUserApi,
           [],
           {
             #email: email,
@@ -687,10 +687,11 @@ class MockCreateNewUserService extends _i1.Mock
         returnValueForMissingStub: _i5.Future<String>.value(''),
       ) as _i5.Future<String>);
   @override
-  _i5.Future<void> addInDatabase(Map<String, dynamic>? user) =>
+  _i5.Future<void> requestAddMessagesInDatabaseApi(
+          Map<String, dynamic>? user) =>
       (super.noSuchMethod(
         Invocation.method(
-          #addInDatabase,
+          #requestAddMessagesInDatabaseApi,
           [user],
         ),
         returnValue: _i5.Future<void>.value(),
@@ -718,13 +719,13 @@ class MockLoginServiceService extends _i1.Mock
         returnValueForMissingStub: null,
       );
   @override
-  _i5.Future<String> logIn(
+  _i5.Future<String> requestLoginApi(
     String? email,
     String? password,
   ) =>
       (super.noSuchMethod(
         Invocation.method(
-          #logIn,
+          #requestLoginApi,
           [
             email,
             password,

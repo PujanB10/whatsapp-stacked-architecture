@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_stacked_architecture/datamodels/user_model.dart';
 import 'package:whatsapp_stacked_architecture/gen/assets.gen.dart';
+import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/loading_widget.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/title_text_widget.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/home/home_viewmodel.dart';
 
@@ -23,29 +24,36 @@ class UsersListViewWidget extends StatelessWidget {
         StreamBuilder(
             stream: homeViewModel.fetchUserList(),
             builder: (context, snapshot) {
+              List<Users>? listOfUsers;
               if (snapshot.hasData) {
-                List<Users> listOfUsers = snapshot.data!;
-                return ListView.builder(
-                  itemCount: listOfUsers.length,
-                  itemBuilder: ((context, index) => ListTile(
-                        title: TitleTextWidget(
-                            text:
-                                "${listOfUsers[index].firstName} ${listOfUsers[index].lastName}"),
-                        subtitle: Text(listOfUsers[index].email),
-                        visualDensity: const VisualDensity(vertical: 4),
-                        leading: CircleAvatar(
-                          backgroundImage: Assets.images.icon1.provider(),
-                        ),
-                        onTap: () {
-                          homeViewModel.navigateToChatPage(
-                              userName: listOfUsers[index].firstName,
-                              imageUrl: Assets.images.icon1.path,
-                              receiverUserID: listOfUsers[index].userId);
-                        },
-                      )),
-                );
+                if (snapshot.data != null) {
+                  listOfUsers = snapshot.data;
+                  return ListView.builder(
+                    itemCount: listOfUsers?.length,
+                    itemBuilder: ((context, index) => ListTile(
+                          title: TitleTextWidget(
+                              text:
+                                  "${listOfUsers?[index].firstName} ${listOfUsers?[index].lastName}"),
+                          subtitle: Text(listOfUsers?[index].email ?? ""),
+                          visualDensity: const VisualDensity(vertical: 4),
+                          leading: CircleAvatar(
+                            backgroundImage: Assets.images.icon1.provider(),
+                          ),
+                          onTap: () {
+                            homeViewModel.navigateToChatPage(
+                                userName: listOfUsers?[index].firstName ??
+                                    "Username not found",
+                                imageUrl: Assets.images.icon1.path,
+                                receiverUserID:
+                                    listOfUsers?[index].userId ?? "");
+                          },
+                        )),
+                  );
+                } else {
+                  return const Center(child: LoadingWidget());
+                }
               } else {
-                return const Center(child: CircularProgressIndicator());
+                return const Center(child: LoadingWidget());
               }
             }),
         const Icon(Icons.groups_sharp),

@@ -12,7 +12,7 @@ class CreateNewUserService {
   ///
   /// A future method that calls the service to create new user from
   /// Firebase Auth with the given credentials.
-  Future<String> createNewUser(
+  Future<String> requestCreateNewUserApi(
       {required String email, required String password}) async {
     try {
       /// Stores the user credential in the credential variable
@@ -26,7 +26,7 @@ class CreateNewUserService {
 
       /// Returns the credential retreived from Firebase Auth service by converting
       /// it into string.
-      return "successful:${userCredential.user!.uid}";
+      return "successful:${userCredential.user?.uid}";
 
       // On errors catches the errors and returns the error code.
     } on FirebaseAuthException catch (e) {
@@ -36,7 +36,8 @@ class CreateNewUserService {
 
   /// Method that takes in the user description in Map type and
   /// adds the object into the Firestore Database.
-  Future<void> addInDatabase(Map<String, dynamic> user) async {
+  Future<void> requestAddUserInfoToDatabaseApi(
+      Map<String, dynamic> user) async {
     db.collection("users").add(user).then((DocumentReference doc) =>
         debugPrint('DocumentSnapshot added with ID: ${doc.id}'));
   }

@@ -10,21 +10,20 @@ class ChatPageAppBarWidget extends StatelessWidget
   /// [imageUrl],[username] and [viewModel] must not be null.
   const ChatPageAppBarWidget(
       {super.key,
-
-      /// [imageUrl] is the url of the image of user whose chat message has been opened.
       required this.imageUrl,
-
-      /// [username] is the username of user whose chat message has been opened.
       required this.username,
-
-      /// [viewModel] is the instance of the view model of chat page.
       required this.viewModel});
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
+  /// It is the url of the image of user whose chat message has been opened.
   final String imageUrl;
+
+  /// It is the username of user whose chat message has been opened.
   final String username;
+
+  /// It is the instance of the view model of chat page.
   final ChatPageViewModel viewModel;
 
   @override

@@ -13,11 +13,13 @@ class BottomNavBar extends StatelessWidget {
   /// Creates a [BottomNavBar] widget
   ///
   /// [userName] must not be null.
-  ///
-  /// [userName] is the username associated with this navigation bar.
   const BottomNavBar(
       {super.key, required this.userName, required this.viewModel});
+
+  /// [userName] is the username associated with this navigation bar.
   final String userName;
+
+  /// [viewModel] is the instance of viewmodel associated with this navigation bar.
   final ChatPageViewModel viewModel;
 
   @override

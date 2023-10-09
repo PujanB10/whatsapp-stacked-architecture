@@ -25,23 +25,29 @@ class MesssageListViewWidget extends StatelessWidget {
     return StreamBuilder(
         stream: chatPageViewModel.fetchChat(receiverUserId),
         builder: (context, snapshot) {
+          List<ChatModel>? listOfMessages;
           if (snapshot.hasData) {
-            List<ChatModel> listOfMessages = snapshot.data!;
-            return ListView.builder(
-                reverse: true,
-                controller: chatPageViewModel.chatScrollController,
-                itemCount: listOfMessages.length,
-                itemBuilder: (context, index) {
-                  return Column(
-                    children: [
-                      verticalSpaceSmall,
-                      ChatBox(
-                          message: listOfMessages[index].message,
-                          isUser: chatPageViewModel
-                              .isCurrentUser(listOfMessages[index].sentBy)),
-                    ],
-                  );
-                });
+            if (snapshot.data != null) {
+              listOfMessages = snapshot.data;
+              return ListView.builder(
+                  reverse: true,
+                  controller: chatPageViewModel.chatScrollController,
+                  itemCount: listOfMessages?.length,
+                  itemBuilder: (context, index) {
+                    return Column(
+                      children: [
+                        verticalSpaceSmall,
+                        ChatBox(
+                            message: listOfMessages?[index].message ??
+                                "Message not found",
+                            isUser: chatPageViewModel.isCurrentUser(
+                                listOfMessages?[index].sentBy ?? "")),
+                      ],
+                    );
+                  });
+            } else {
+              return const LoadingWidget();
+            }
           } else {
             return const LoadingWidget();
           }

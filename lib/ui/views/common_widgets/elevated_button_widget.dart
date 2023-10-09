@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-/// A custom text button widget.
-class CustomTextButtonWidget extends StatelessWidget {
+/// A custom elevated button widget.
+class ElevatedButtonWidget extends StatelessWidget {
   final VoidCallback onPressed;
   final String textInButton;
 
-  /// Creates a [CustomTextButtonWidget]
+  /// Creates a [ElevatedButtonWidget]
   ///
   /// [textInButton] and [onPressed] must not be null
-  const CustomTextButtonWidget({
+  const ElevatedButtonWidget({
     /// Text that is shown in the button.
     required this.textInButton,
 
