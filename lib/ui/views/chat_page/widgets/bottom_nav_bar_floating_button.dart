@@ -6,7 +6,7 @@ import 'package:whatsapp_stacked_architecture/ui/views/chat_page/chat_page_viewm
 class BottomNavBarFloatingButton extends StatelessWidget {
   /// Creates a [BottomNavBarFloatingButton] widget.
   ///
-  /// Takes no parameter.
+  /// Takes no argument.
   const BottomNavBarFloatingButton({
     super.key,
   });
@@ -19,7 +19,7 @@ class BottomNavBarFloatingButton extends StatelessWidget {
         onPressed: () {
           /// Calls the method that adds message in the
           /// database from the viewmodel.
-          context.read<ChatPageViewModel>().addMessages();
+          context.read<ChatPageViewModel>().requestAddMessagesToDatabaseApi();
         },
         child: context.watch<ChatPageViewModel>().defaultIcon,
       ),
