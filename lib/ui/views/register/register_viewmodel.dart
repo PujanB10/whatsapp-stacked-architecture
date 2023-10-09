@@ -31,13 +31,13 @@ class RegisterViewModel extends BaseViewModel {
 
   /// Async function that calls service to create a new user.
   Future<void> requestCreateNewUserApi() async {
-    // Recives the response given by the service class
+    /// Recives the response given by the service class
     final response =
         await _requestCreateNewUserApiService.requestCreateNewUserApi(
             email: emailController.text, password: passwordController.text);
 
-    // If the response received contains keyword successful adds the user
-    // to the database and navigates to Home Page.
+    /// If the response received contains keyword successful adds the user
+    /// to the database and navigates to Home Page.
     if (response.contains("successful")) {
       // Converting the given credentials into User model.
       final user = Users(
@@ -45,34 +45,37 @@ class RegisterViewModel extends BaseViewModel {
               lastName: _lastNameController.text,
               email: _emailController.text,
 
-              // The response is in the format of "successful:userId" so retrieving
-              // the userId from the response.
+              /// The response is in the format of "successful:userId" so retrieving
+              /// the userId from the response.
               userId: response.split(":")[1])
           .toJson();
       _signUpResponseMessage =
           "New user with given credentials has been created";
       _responseSnackbarColor = Colors.green;
-      // Add the user to the database.
-      await _requestCreateNewUserApiService.addInDatabase(user);
+
+      /// Add the user to the database.
+      await _requestCreateNewUserApiService
+          .requestAddUserInfoToDatabaseApi(user);
       _navigationService.clearStackAndShow(Routes.homeView);
     }
 
-    // If response recives weak-password message show the given message in
-    // the snackbar.
+    /// If response recives weak-password message show the given message in
+    /// the snackbar.
     else if (response == 'weak-password') {
       debugPrint('The password provided is too weak.');
       _signUpResponseMessage = "The password provided is too weak.";
 
-      // If response recives email-already-in-use message show the given message in
-      // the snackbar.
+      /// If response recives email-already-in-use message show the given message in
+      /// the snackbar.
     } else if (response == 'email-already-in-use') {
       debugPrint('The account already exists for that email.');
       _signUpResponseMessage = "The account already exists for that email.";
 
-      // If no credentials have been given, show the given message in snackbar.
+      /// If no credentials have been given, show the given message in snackbar.
     } else if (response == "channel-error") {
       _signUpResponseMessage = "Please type in the required credentials";
-      // If faced any other errors shows the response message in the snackbar.
+
+      /// If faced any other errors shows the response message in the snackbar.
     } else {
       debugPrint(response);
       _signUpResponseMessage = response;
