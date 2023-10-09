@@ -22,8 +22,7 @@ class LoginViewModel extends BaseViewModel {
   String get requestLoginApiResponseMessage => _requestLoginApiResponseMessage;
   Color get snackBarColorOnAuthentication => _snackBarColorOnAuthentication;
 
-  /// Async function that calls [requestLoginApi] service from the
-  /// service class
+  /// Calls [requestLoginApi] service from the service class
   Future<void> requestLoginApi() async {
     final String response = await _requestLoginApiService.requestLoginApi(
         emailController.text, passwordController.text);
@@ -72,7 +71,7 @@ class LoginViewModel extends BaseViewModel {
   Future<bool> isSupposedToExit() async {
     final DialogResponse<dynamic>? response = await _dialogService
         .showConfirmationDialog(title: "Do you want to exit?");
-    return response!.confirmed;
+    return response?.confirmed ?? false;
   }
 
   @override
