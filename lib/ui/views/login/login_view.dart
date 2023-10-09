@@ -6,12 +6,11 @@ import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/body_text_
 import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/elevated_button_widget.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/page_title_text_widget.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/snackbar_text_widget.dart';
-import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/text_button_text_widget.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/text_button_widget.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/login/widgets/login_email_text_field_widget.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/login/widgets/login_password_text_field_widget.dart';
+import 'package:whatsapp_stacked_architecture/ui/views/login/widgets/social_media_buttons.dart';
 import 'login_viewmodel.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginView extends StackedView<LoginViewModel> {
   const LoginView({Key? key}) : super(key: key);
@@ -47,43 +46,16 @@ class LoginView extends StackedView<LoginViewModel> {
                 ),
                 verticalSpace(0.01.sh),
                 ElevatedButtonWidget(
-                  onPressed: () async {
-                    await viewModel.requestLoginApi();
-                    if (context.mounted) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          backgroundColor:
-                              viewModel.snackBarColorOnAuthentication,
-                          content: SnackbarTextWidget(
-                              text: viewModel.requestLoginApiResponseMessage),
-                        ),
-                      );
-                    }
-                  },
+                  onPressed: () => handleLoginButtonPress(context, viewModel),
                   textInButton: "Log In",
                 ),
                 verticalSpace(0.03.sh),
                 const BodyTextWidget(text: "or"),
                 TextButtonWidget(
-                    onPressed: () {
-                      viewModel.navigateToRegisterView();
-                    },
+                    onPressed: () => viewModel.navigateToRegisterView(),
                     text: "Sign Up"),
                 verticalSpace(0.01.sh),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    IconButton(
-                        onPressed: () {},
-                        icon: const Icon(FontAwesomeIcons.google)),
-                    IconButton(
-                        onPressed: () {},
-                        icon: const Icon(FontAwesomeIcons.facebook)),
-                    IconButton(
-                        onPressed: () {},
-                        icon: const Icon(FontAwesomeIcons.instagram))
-                  ],
-                ),
+                const SocialMediaButtons(),
                 verticalSpace(0.01.sh),
               ],
             ),
@@ -98,4 +70,23 @@ class LoginView extends StackedView<LoginViewModel> {
     BuildContext context,
   ) =>
       LoginViewModel();
+
+  void handleLoginButtonPress(
+      BuildContext context, LoginViewModel viewModel) async {
+    await viewModel.requestLoginApi();
+    if (context.mounted) {
+      buildSnackbarToShowResponse(context, viewModel);
+    }
+  }
+
+  void buildSnackbarToShowResponse(
+      BuildContext context, LoginViewModel viewModel) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: viewModel.snackBarColorOnAuthentication,
+        content:
+            SnackbarTextWidget(text: viewModel.requestLoginApiResponseMessage),
+      ),
+    );
+  }
 }
