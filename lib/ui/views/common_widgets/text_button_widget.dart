@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/text_button_text_widget.dart';
+import 'package:whatsapp_stacked_architecture/ui/common/app_colors.dart';
 
 class TextButtonWidget extends StatelessWidget {
   final String text;
@@ -13,9 +13,12 @@ class TextButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-        onPressed: () {
-          onPressed();
-        },
-        child: TextButtonTextWidget(text: text));
+        onPressed: onPressed,
+        child: Text(
+          text,
+          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                color: AppColor.primary,
+              ),
+        ));
   }
 }
