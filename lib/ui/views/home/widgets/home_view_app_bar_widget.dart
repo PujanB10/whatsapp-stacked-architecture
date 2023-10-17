@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/app_bar_title_text_widget.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/body_text_widget.dart';
-import 'package:whatsapp_stacked_architecture/ui/views/home/widgets/icon_button_widget.dart';
+import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/icon_button_widget.dart';
 
 /// A appbar for displaying information and other functionalities.
 class HomeViewAppBarWidget extends StatelessWidget

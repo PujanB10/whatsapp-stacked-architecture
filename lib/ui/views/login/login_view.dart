@@ -73,6 +73,7 @@ class LoginView extends StackedView<LoginViewModel> {
 
   void handleLoginButtonPress(
       BuildContext context, LoginViewModel viewModel) async {
+        FocusManager.instance.primaryFocus?.unfocus();
     await viewModel.requestLoginApi();
     if (context.mounted) {
       buildSnackbarToShowResponse(context, viewModel);
