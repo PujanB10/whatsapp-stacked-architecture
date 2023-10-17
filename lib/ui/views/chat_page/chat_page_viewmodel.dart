@@ -14,7 +14,7 @@ class ChatPageViewModel extends FormViewModel {
   final ScrollController _chatScrollController = ScrollController();
   Icon _defaultIcon = const Icon(Icons.mic);
   Icon get defaultIcon => _defaultIcon;
-  String _currentUserId = "";
+  final String _currentUserId = FirebaseAuth.instance.currentUser?.uid ?? "";
   String _chatId = "";
   String get chatId => _chatId;
   String get currentUserId => _currentUserId;
@@ -64,7 +64,6 @@ class ChatPageViewModel extends FormViewModel {
   /// the database and returns the Stream to the StreamBuilder in
   /// the view.
   Stream<List<ChatModel>> fetchChat(String receiverUserId) {
-    _currentUserId = FirebaseAuth.instance.currentUser?.uid ?? "";
     getChatId(currentUserId, receiverUserId);
     return _chatService.fetchChatMessages(chatId: _chatId);
   }
