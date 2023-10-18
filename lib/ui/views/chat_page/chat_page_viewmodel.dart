@@ -41,6 +41,8 @@ class ChatPageViewModel extends FormViewModel {
     _chatId = currentUserId.compareTo(receiverUserId) >= 0
         ? "$currentUserId-$receiverUserId"
         : "$receiverUserId-$currentUserId";
+
+    debugPrint(_chatId);
     return _chatId;
   }
 
