@@ -12,10 +12,9 @@ A Flutter-based application replicating the UI and basic functionalities of What
 - **Unit Tests**: Tests for Firebase services, including auth and database.
 
 ## Screenshots
-![Home Screen](assets/screenshots/home-screen.jpg) 
-![Chat Screen](assets/screenshots/chat-screen.jpg)
-![SignIn Screen](assets/screenshots/signin-screen.jpg)
-![SignUp Screen](assets/screenshots/signup-screen.jpg)
+<img src = "assets/screenshots/home-screen.jpg" width ="200" /> <img src = "assets/screenshots/chat-screen.jpg" width ="200" />
+
+<img src = "assets/screenshots/signin-screen.jpg" width ="200" /> <img src = "assets/screenshots/signup-screen.jpg" width ="200" />
 
 
 ## Getting Started
