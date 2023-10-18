@@ -43,9 +43,9 @@ workflows:
 
       # Add one or more groups that you wish to distribute your Android application to.
       # You can create groups in the Firebase console
-        groups: 
-          - androidTesters
-          - ...
+          groups: 
+            - androidTesters
+            - ...
 
         ios:
         # Add your iOS app id retrieved from Firebase console
@@ -53,9 +53,9 @@ workflows:
 
       # Add one or more groups that you wish to distribute your iOS application to.
       # You can create groups in the Firebase console
-        groups:
-          - iosTesters
-          - ...
+          groups:
+            - iosTesters
+            - ...
       email:
         recipients:
           - bhattaraipoozan@gmail.com
