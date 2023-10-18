@@ -22,6 +22,8 @@ workflows:
       cancel_previous_builds: false
     artifacts:
       - build/**/outputs/bundle/**/*.aab
+      - build/**/outputs/apk/**/*.apk                 
+        # relative path for a project in root directory
     publishing:
       firebase:
       # use this line to authenticate via service account
