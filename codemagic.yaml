@@ -4,6 +4,9 @@ workflows:
     instance_type: mac_mini_m1
     max_build_duration: 60
     environment:
+
+      groups:
+        - firebase_credentials
       vars:
         PUBLIC_ENV_VAR: "value here"
       flutter: stable
