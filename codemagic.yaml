@@ -21,8 +21,8 @@ workflows:
           source: true
       cancel_previous_builds: false
     artifacts:
-      - build/**/outputs/bundle/**/*.aab
-      - build/**/outputs/apk/**/*.apk                 
+      # - build/**/outputs/bundle/**/*.aab
+      - build/app/outputs/apk/release/*.apk                 
         # relative path for a project in root directory
     publishing:
       firebase:
