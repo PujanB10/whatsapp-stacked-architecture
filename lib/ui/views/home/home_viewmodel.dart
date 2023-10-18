@@ -29,7 +29,7 @@ class HomeViewModel extends BaseViewModel {
     // Display dialog from the dialog service.
     final DialogResponse<dynamic>? response = await _dialogService
         .showConfirmationDialog(title: "Do you want to exit?");
-    return (response!.confirmed);
+    return (response?.confirmed ?? false);
   }
 
   /// Method to call the service that fetches the list

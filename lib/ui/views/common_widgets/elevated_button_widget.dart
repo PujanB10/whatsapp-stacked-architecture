@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// A custom text button widget.
+/// A custom elevated button widget.
 class ElevatedButtonWidget extends StatelessWidget {
   final VoidCallback onPressed;
   final String textInButton;

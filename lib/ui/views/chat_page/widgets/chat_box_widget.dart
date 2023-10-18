@@ -8,14 +8,13 @@ class ChatBox extends StatelessWidget {
   /// Creates a [ChatBox] widget.
   ///
   /// [message] and [isUser] must not be null.
-  ///
-  /// [message] is the chat message that is to be displayed in the chatbox.
-  /// [isUser] is to check whether the message is being sent or being received
-  /// by the user.
-
   const ChatBox({super.key, required this.message, required this.isUser});
+
+  /// [message] is the chat message that is to be displayed in the chatbox.
   final String message;
 
+  /// [isUser] is to check whether the message is being sent or being received
+  /// by the user.
   /// ```isUser = true;``` means the message is sent.
   /// ```isUser = false;``` means the message is received.
   final bool isUser;

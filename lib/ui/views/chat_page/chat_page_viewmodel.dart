@@ -14,7 +14,7 @@ class ChatPageViewModel extends FormViewModel {
   final ScrollController _chatScrollController = ScrollController();
   Icon _defaultIcon = const Icon(Icons.mic);
   Icon get defaultIcon => _defaultIcon;
-  final String _currentUserId = FirebaseAuth.instance.currentUser!.uid;
+  final String _currentUserId = FirebaseAuth.instance.currentUser?.uid ?? "";
   String _chatId = "";
   String get chatId => _chatId;
   String get currentUserId => _currentUserId;
@@ -25,6 +25,7 @@ class ChatPageViewModel extends FormViewModel {
   /// Returns ``` true ``` if it is the userId of the user currently logged in.
   /// Returns ``` false ``` if it is not the userId of the user currently logged in.
   bool isCurrentUser(String checkUserId) {
+    debugPrint(checkUserId);
     return currentUserId == checkUserId;
   }
 
@@ -36,15 +37,16 @@ class ChatPageViewModel extends FormViewModel {
   /// If ``` currentUserId = "JHbJB86jbjH" ```
   /// and ``` receiverId = "ajnKIUI77JH3"  ```
   /// then ``` chatId = "ajnKIUI77JH3-JHbJB86jbjH" ```
-  void getChatId(String currentUserId, String receiverUserId) {
+  String getChatId(String currentUserId, String receiverUserId) {
     _chatId = currentUserId.compareTo(receiverUserId) >= 0
         ? "$currentUserId-$receiverUserId"
         : "$receiverUserId-$currentUserId";
+    return _chatId;
   }
 
   /// Method that calls the service to add the message typed in by
   /// the user to the database.
-  void addMessages() async {
+  void requestAddMessagesToDatabaseApi() async {
     /// Converting the message typed in by the user into Chat model.
 
     if (messageInputController.text.isNotEmpty) {
@@ -54,7 +56,7 @@ class ChatPageViewModel extends FormViewModel {
               sentTime: Timestamp.now())
           .toJson();
       messageInputController.clear();
-      await _chatService.addMessageInDatabase(
+      await _chatService.requestAddMessagesToDatabaseApi(
           messageInfo: messageInfo, chatId: chatId);
     }
   }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/app_bar_title_text_widget.dart';
+import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/body_text_widget.dart';
+import 'package:whatsapp_stacked_architecture/ui/views/common_widgets/icon_button_widget.dart';
 
 /// A appbar for displaying information and other functionalities.
 class HomeViewAppBarWidget extends StatelessWidget
@@ -26,9 +28,13 @@ class HomeViewAppBarWidget extends StatelessWidget
         // style: Theme.of(context).textTheme.titleSmall,
       ),
       actions: <Widget>[
-        buildIconButton(const Icon(Icons.camera_alt_outlined)),
-        buildIconButton(const Icon(Icons.search)),
-        buildIconButton(const Icon(Icons.more_vert))
+        IconButtonWidget(
+            onPressed: () {}, iconName: const Icon(Icons.camera_alt_outlined)),
+        IconButtonWidget(
+            onPressed: () {}, iconName: const Icon(Icons.search_outlined)),
+        PopupMenuButton(
+            itemBuilder: (context) =>
+                [const PopupMenuItem(child: BodyTextWidget(text: "Sign Out"))])
       ],
 
       /// Create tab bar with four tabs.
@@ -46,13 +52,6 @@ class HomeViewAppBarWidget extends StatelessWidget
           ),
         ],
       ),
-    );
-  }
-
-  IconButton buildIconButton(Icon iconName) {
-    return IconButton(
-      icon: iconName,
-      onPressed: () {},
     );
   }
 }
