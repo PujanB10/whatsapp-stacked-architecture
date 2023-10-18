@@ -23,11 +23,11 @@ workflows:
 
     scripts:
       - flutter build apk --release
-      - flutter build aab --release
+     
 
     artifacts:
       - build/**/outputs/**/*.apk
-      - build/**/outputs/**/*.aab           
+             
         # relative path for a project in root directory
     publishing:
       firebase:
