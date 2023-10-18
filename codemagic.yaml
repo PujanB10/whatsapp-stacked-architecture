@@ -22,8 +22,8 @@ workflows:
       cancel_previous_builds: false
 
     scripts:
-      flutter build apk --release
-      flutter build aab --release
+      - flutter build apk --release
+      - flutter build aab --release
 
     artifacts:
       - build/**/outputs/**/*.apk
