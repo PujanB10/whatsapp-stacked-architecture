@@ -20,6 +20,12 @@ workflows:
           include: true
           source: true
       cancel_previous_builds: false
+
+    scripts:
+      script:
+        flutter build apk --release
+        flutter build aab --release
+
     artifacts:
       - build/**/outputs/**/*.apk
       - build/**/outputs/**/*.aab           
