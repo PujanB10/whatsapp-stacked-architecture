@@ -25,6 +25,7 @@ class ChatPageViewModel extends FormViewModel {
   /// Returns ``` true ``` if it is the userId of the user currently logged in.
   /// Returns ``` false ``` if it is not the userId of the user currently logged in.
   bool isCurrentUser(String checkUserId) {
+    debugPrint(checkUserId);
     return currentUserId == checkUserId;
   }
 
