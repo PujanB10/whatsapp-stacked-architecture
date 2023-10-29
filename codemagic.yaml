@@ -25,7 +25,7 @@ workflows:
       cancel_previous_builds: false
 
     scripts:
-        - LATEST_BUILD_VERSION = $(firebase-app-distribution get-latest-build-version -p 448854262898 -a 1:448854262898:android:42f1a8984fc8549b13aeeb)
+          LATEST_BUILD_VERSION = $(firebase-app-distribution get-latest-build-version -p 448854262898 -a 1:448854262898:android:42f1a8984fc8549b13aeeb)
         - flutter build apk --release --build-number = $LATEST_BUILD_VERSION+1
         # - flutter build apk --release
      
