@@ -687,11 +687,11 @@ class MockCreateNewUserService extends _i1.Mock
         returnValueForMissingStub: _i5.Future<String>.value(''),
       ) as _i5.Future<String>);
   @override
-  _i5.Future<void> requestAddMessagesInDatabaseApi(
+  _i5.Future<void> requestAddUserInfoToDatabaseApi(
           Map<String, dynamic>? user) =>
       (super.noSuchMethod(
         Invocation.method(
-          #requestAddMessagesInDatabaseApi,
+          #requestAddUserInfoToDatabaseApi,
           [user],
         ),
         returnValue: _i5.Future<void>.value(),
@@ -754,20 +754,6 @@ class MockFetchUserListService extends _i1.Mock
         ),
       ) as _i2.FirebaseFirestore);
   @override
-  List<_i10.Users> get listOfUsers => (super.noSuchMethod(
-        Invocation.getter(#listOfUsers),
-        returnValue: <_i10.Users>[],
-        returnValueForMissingStub: <_i10.Users>[],
-      ) as List<_i10.Users>);
-  @override
-  set listOfUsers(List<_i10.Users>? _listOfUsers) => super.noSuchMethod(
-        Invocation.setter(
-          #listOfUsers,
-          _listOfUsers,
-        ),
-        returnValueForMissingStub: null,
-      );
-  @override
   _i5.Stream<List<_i10.Users>> fetchUserList() => (super.noSuchMethod(
         Invocation.method(
           #fetchUserList,
@@ -807,13 +793,13 @@ class MockChatService extends _i1.Mock implements _i11.ChatService {
         returnValueForMissingStub: _i5.Stream<List<_i12.ChatModel>>.empty(),
       ) as _i5.Stream<List<_i12.ChatModel>>);
   @override
-  _i5.Future<void> addMessageInDatabase({
+  _i5.Future<void> requestAddMessagesToDatabaseApi({
     required Map<String, dynamic>? messageInfo,
     required String? chatId,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
-          #addMessageInDatabase,
+          #requestAddMessagesToDatabaseApi,
           [],
           {
             #messageInfo: messageInfo,
