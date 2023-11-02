@@ -41,12 +41,14 @@ class RegisterView extends StackedView<RegisterViewModel> {
               RegisterConfirmPasswordTextFieldWidget(viewModel: viewModel),
               verticalSpace(0.03.sh),
               ElevatedButtonWidget(
+                  key: const Key("signUpButton"),
                   textInButton: "Sign Up",
                   onPressed: () =>
                       handleRegisterButtonPress(context, viewModel)),
               verticalSpace(0.03.sh),
               const BodyTextWidget(text: "Already a user?"),
               TextButtonWidget(
+                  key: const Key("signInButton"),
                   text: "Sign In",
                   onPressed: () => viewModel.navigateToLoginView())
             ],

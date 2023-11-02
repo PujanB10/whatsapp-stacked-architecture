@@ -28,6 +28,7 @@ class HomeView extends StackedView<HomeViewModel> {
             homeViewModel: viewModel,
           ),
           floatingActionButton: FloatingActionButton(
+            key: const Key("newMessageButton"),
             onPressed: () {},
             child: const Icon(Icons.message),
           ),

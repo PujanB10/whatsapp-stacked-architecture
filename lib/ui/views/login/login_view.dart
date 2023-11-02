@@ -41,11 +41,13 @@ class LoginView extends StackedView<LoginViewModel> {
                   viewModel: viewModel,
                 ),
                 TextButtonWidget(
+                  key: const Key("forgotPasswordButton"),
                   onPressed: () {},
                   text: "Forgot Password",
                 ),
                 verticalSpace(0.01.sh),
                 ElevatedButtonWidget(
+                  key: const Key("logInButton"),
                   onPressed: () => handleLoginButtonPress(context, viewModel),
                   textInButton: "Log In",
                 ),
@@ -73,7 +75,7 @@ class LoginView extends StackedView<LoginViewModel> {
 
   void handleLoginButtonPress(
       BuildContext context, LoginViewModel viewModel) async {
-        FocusManager.instance.primaryFocus?.unfocus();
+    FocusManager.instance.primaryFocus?.unfocus();
     await viewModel.requestLoginApi();
     if (context.mounted) {
       buildSnackbarToShowResponse(context, viewModel);
