@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stacked/stacked.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:whatsapp_stacked_architecture/gen/assets.gen.dart';
+import 'package:whatsapp_stacked_architecture/ui/common/ui_helpers.dart';
 import 'startup_viewmodel.dart';
 
 class StartupView extends StackedView<StartupViewModel> {
@@ -69,8 +69,12 @@ class StartupView extends StackedView<StartupViewModel> {
                               onPressed: () => viewModel.launchURL(Uri.parse(
                                   "https://play.google.com/store/apps/details?id=com.tencent.ig&hl=en&gl=US&pli=1")),
                             ),
-                            ElevatedButton(
-                              child: Text(btnLabelCancel),
+                            horizontalSpaceTiny,
+                            TextButton(
+                              child: Text(
+                                btnLabelCancel,
+                                style: const TextStyle(color: Colors.red),
+                              ),
                               onPressed: () => viewModel.navigateToLoginView(),
                             ),
                           ],
