@@ -59,9 +59,6 @@ void main() {
           initialIndex: 1,
           child: UsersListViewWidget(homeViewModel: homeViewModel)));
       await tester.pump();
-      for (var widget in tester.allWidgets) {
-        debugPrint(widget.toString());
-      }
 
       final streamBuilderFinder = find.byType(StreamBuilder<List<Users>>);
       expect(streamBuilderFinder, findsOneWidget);
